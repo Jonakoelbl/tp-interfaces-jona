@@ -1,5 +1,7 @@
 package DominioRobot;
 
+import java.util.List;
+
 public class Sistema {
 	
 	private static Sistema INSTANCIA = new Sistema(); 
@@ -16,5 +18,9 @@ public class Sistema {
 		Integer costo = 100 - unRobot.getPerformance();
 		unJugador.pagarGasto(costo);
 		unRobot.setPerformance(100);
+		
+		List<Robot> misRobots = unJugador.getMisRobots();
+		unJugador.setMisRobots(null);
+		unJugador.setMisRobots(misRobots);
 	}
 }
