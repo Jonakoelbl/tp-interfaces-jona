@@ -5,6 +5,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import DominioRobot.Jugador;
+import DominioRobot.Robot;
 
 
 public class TestJugador {
