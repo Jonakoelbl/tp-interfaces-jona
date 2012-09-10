@@ -10,8 +10,9 @@ public class Jugador {
 	
 	private String nombre; 
 	private List<Robot> misRobots = new Vector<Robot>();
-	private Integer dinero = 3000;
+	private Integer dinero = 3000, performanceAReparar, costo;
 	private Robot robotSeleccionado;
+	private Integer performanceRobotSeleccionado;
 	
 	public Jugador(String unNombre) {
 		this.nombre = unNombre;
@@ -27,6 +28,16 @@ public class Jugador {
 		this.misRobots.add(unRobot);
 	}
 	
+	public void obtenerCosto(){
+		Integer costo = Sistema.getInstancia().calcularCosto(performanceAReparar);
+		this.setCosto(costo);
+	}
+	
+	public void verPerformanceRobot(){
+		Integer deterioro = this.robotSeleccionado.getPerformance();
+		this.setPerformanceRobotSeleccionado(deterioro);
+	}
+	
 	public void repararSeleccionado() {
 		this.repararUnRobot(this.robotSeleccionado);
 	}
@@ -34,7 +45,8 @@ public class Jugador {
 	public void repararUnRobot(Robot unRobot){
 		Sistema.getInstancia().reparar(unRobot, this);
 	}
-
+	
+	//*****	Accesors *****//
 	public String getNombre() {
 		return nombre;
 	}
@@ -69,5 +81,30 @@ public class Jugador {
 
 	public void setRobotSeleccionado(Robot robotSeleccionado) {
 		this.robotSeleccionado = robotSeleccionado;
+	}
+
+	public Integer getPerformanceAReparar() {
+		return performanceAReparar;
+	}
+
+	public void setPerformanceAReparar(Integer performanceAReparar) {
+		this.performanceAReparar = performanceAReparar;
+	}
+
+	public Integer getCosto() {
+		return costo;
+	}
+
+	public void setCosto(Integer costo) {
+		this.costo = costo;
+	}
+
+	public void setPerformanceRobotSeleccionado(
+			Integer performanceRobotSeleccionado) {
+		this.performanceRobotSeleccionado = performanceRobotSeleccionado;
+	}
+
+	public Integer getPerformanceRobotSeleccionado() {
+		return performanceRobotSeleccionado;
 	}
 }
