@@ -13,6 +13,10 @@ public class Sistema {
 	
 	public static Sistema getInstancia(){return INSTANCIA;}
 	
+	public Integer calcularCosto(Integer aReparar){
+		return 25 * aReparar;
+	}
+	
 	public void reparar(Robot unRobot, Jugador unJugador){
 		//TODO: agregar exception cuando el usuario no tiene dinero
 		Integer costo = 100 - unRobot.getPerformance();
