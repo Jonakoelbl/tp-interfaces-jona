@@ -17,10 +17,8 @@ import DominioRobot.Robot;
 
 public class JugadorApplication extends MainWindow<Jugador> {
 	
-	private static Jugador jugador = new Jugador("Sr X");
-	
 	public JugadorApplication() {
-		super(jugador);
+		super(new Jugador("Jona"));
 	}
 	
 	
@@ -32,10 +30,10 @@ public class JugadorApplication extends MainWindow<Jugador> {
 		
 		Panel primerPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		Label nombreJugador = new Label(primerPanel);
-		nombreJugador.bindValueToProperty("nombre");
+		nombreJugador.bindValueToProperty(Jugador.NOMBRE);
 		
 		Label dinero = new Label(primerPanel);
-		dinero.bindValueToProperty("dinero");
+		dinero.bindValueToProperty(Jugador.DINERO);
 		
 		Panel segundoPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		Label misRobots = new Label(segundoPanel);
@@ -45,7 +43,7 @@ public class JugadorApplication extends MainWindow<Jugador> {
 		Panel tercerPanel = creacionDeColumnaJugador(mainPanel);
 		
 		Panel cuartoPanel = new Panel(tercerPanel).setLayout(new VerticalLayout());
-		crearBoton(cuartoPanel, "Reparar", "aReparar");
+		crearBoton(cuartoPanel, "Reparar", "repararElRobot");			
 		crearBoton(cuartoPanel, "Mejorar", "aMejorar");
 		crearBoton(cuartoPanel, "Vender", "aVender");
 		
@@ -65,44 +63,44 @@ public class JugadorApplication extends MainWindow<Jugador> {
 	}
 
 	private Panel creacionDeColumnaJugador(Panel mainPanel) {
-		Panel segundoPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
-		Table<Robot> table = new Table<Robot>(segundoPanel, Robot.class);
-		table.bindContentsToProperty("misRobots");
-		table.bindSelection("robotSeleccionado");
+		Panel panel = new Panel(mainPanel).setLayout(new HorizontalLayout());
+		Table<Robot> table = new Table<Robot>(panel, Robot.class);
+		table.bindItemsToProperty("misRobots");
+		table.bindSelection(Jugador.ROBOT_SELECCIONADO);
 		
 		Column<Robot> nombreColumna = new Column<Robot>(table);
-		nombreColumna.setTitle("nombre del Robot");
+		nombreColumna.setTitle("Nombre del robot");
 		nombreColumna.setFixedSize(150);
-		nombreColumna.bindContentsToProperty("nombreRobot");
+		nombreColumna.bindContentsToProperty(Robot.NOMBRE_ROBOT);
 		
 		Column<Robot> poderColumna = new Column<Robot>(table);
 		poderColumna.setTitle("Poder de ataque");
 		poderColumna.setFixedSize(150);
-		poderColumna.bindContentsToProperty("poder");
+		poderColumna.bindContentsToProperty(Robot.PODER);
 		
 		Column<Robot> performanceColumna = new Column<Robot>(table);
-		performanceColumna.setTitle("Performance");
+		performanceColumna.setTitle("Nivel de deterioro");
 		performanceColumna.setFixedSize(200);
-		performanceColumna.bindContentsToProperty("performance");
+		performanceColumna.bindContentsToProperty(Robot.NIVEL_DE_DETERIORO);
 		
 		//table.setWidth(500).setHeigth(200);
-		return segundoPanel;
+		return panel;
 	}
-	
-	public void aReparar(){
-		this.openDialog(new SistemaReparacionWindow(this, jugador), "repararSeleccionado");
+
+	public void repararElRobot(){
+		this.openDialog(new SistemaReparacionWindow(this, this.getModelObject()),"repararUnRobot");
 	}
 	
 	public void aMejorar(){
-		this.openDialog(new SistemaMejoraWindow(this, jugador), "mejorarSeleccionado");
+		this.openDialog(new SistemaMejoraWindow(this, this.getModelObject().getRobotSeleccionado()), "mejorarUnRobot");
 	}
 	
 	public void aVender(){
-		this.openDialog(new SistemaVentaWindow(this,jugador), "venderSeleccionado");
+		this.openDialog(new SistemaVentaWindow(this,this.getModelObject().getRobotSeleccionado()), "venderUnRobot");
 	}
 	
 	public void aComprar(){
-		this.openDialog(new SistemaVentaWindow(this,jugador), "comprarSeleccion");
+		this.openDialog(new SistemaVentaWindow(this,this.getModelObject().getRobotSeleccionado()), "comprarSeleccion");
 	}
 	
 	protected void openDialog(Dialog<?> dialog, String nombreMetodo){
