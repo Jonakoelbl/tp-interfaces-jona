@@ -12,13 +12,16 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.MainWindow;
 
+import robots.appModel.JugadorInicio;
+import robots.appModel.ReparacionAppModel;
+import robots.appModel.TiendaAppModel;
 import DominioRobot.Jugador;
 import DominioRobot.Robot;
 
-public class JugadorWindow extends MainWindow<Jugador> {
+public class JugadorWindow extends MainWindow<JugadorInicio> {
 	
 	public JugadorWindow() {
-		super(new Jugador("Jona"));
+		super(new JugadorInicio(new Jugador("Pepe")));
 	}
 	
 	
@@ -30,17 +33,17 @@ public class JugadorWindow extends MainWindow<Jugador> {
 		
 		Panel primerPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		Label nombreJugador = new Label(primerPanel);
-		nombreJugador.bindValueToProperty(Jugador.NOMBRE);
+		nombreJugador.bindValueToProperty("jugador.nombre");
 		
 		Label dinero = new Label(primerPanel);
-		dinero.bindValueToProperty(Jugador.DINERO);
+		dinero.bindValueToProperty("jugador.dinero");
 		
 		Panel segundoPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		Label misRobots = new Label(segundoPanel);
 		misRobots.setText("Mis Robots     ");
-		crearBoton(segundoPanel, "Comprar", "aComprar");
+		crearBoton(segundoPanel, "Comprar", "abrirComprarRobot");
 	
-		Panel tercerPanel = creacionDeColumnaJugador(mainPanel);
+		Panel tercerPanel = this.crearTablaDeRobots(mainPanel);
 		
 		Panel cuartoPanel = new Panel(tercerPanel).setLayout(new VerticalLayout());
 		crearBoton(cuartoPanel, "Reparar", "repararElRobot");			
@@ -62,11 +65,11 @@ public class JugadorWindow extends MainWindow<Jugador> {
 			.onClick(new MessageSend(this, nombreMetodo));
 	}
 
-	private Panel creacionDeColumnaJugador(Panel mainPanel) {
+	private Panel crearTablaDeRobots(Panel mainPanel) {
 		Panel panel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		Table<Robot> table = new Table<Robot>(panel, Robot.class);
-		table.bindContentsToProperty("misRobots");
-		table.bindSelection(Jugador.ROBOT_SELECCIONADO);
+		table.bindItemsToProperty(JugadorInicio.ROBOTS_DEL_JUGADOR);
+		table.bindSelection(JugadorInicio.ROBOT_SELECCIONADO);
 		
 		Column<Robot> nombreColumna = new Column<Robot>(table);
 		nombreColumna.setTitle("Nombre del robot");
@@ -88,7 +91,9 @@ public class JugadorWindow extends MainWindow<Jugador> {
 	}
 
 	public void repararElRobot(){
-		this.openDialog(new SistemaReparacionWindow(this, this.getModelObject()),"repararUnRobot");
+		this.openDialog(new SistemaReparacionWindow(this,
+											new ReparacionAppModel(this.getModelObject().getJugador(),
+																	this.getModelObject().getRobotSeleccionado())),"reparar");
 	}
 	
 	public void aMejorar(){
@@ -96,11 +101,17 @@ public class JugadorWindow extends MainWindow<Jugador> {
 	}
 	
 	public void aVender(){
-		this.openDialog(new SistemaVentaWindow(this,this.getModelObject().getRobotSeleccionado()), "venderUnRobot");
+		SistemaVentaWindow venderRobot = 
+				new SistemaVentaWindow(this,new TiendaAppModel(this.getModelObject().getJugador(), 
+																this.getModelObject().getRobotSeleccionado())
+										);
+		this.openDialog(venderRobot, "vender");
 	}
-	
-	public void aComprar(){
-		this.openDialog(new SistemaVentaWindow(this,this.getModelObject().getRobotSeleccionado()), "comprarSeleccion");
+	 
+	public void abrirComprarRobot(){
+		this.openDialog(new SistemaVentaWindow(this,
+													new TiendaAppModel(this.getModelObject().getJugador(), 
+																this.getModelObject().getRobotSeleccionado())), "comprarSeleccion");
 	}
 	
 	protected void openDialog(Dialog<?> dialog, String nombreMetodo){

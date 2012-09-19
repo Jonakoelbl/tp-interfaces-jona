@@ -8,14 +8,17 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.lacar.ui.model.Action;
+
+import robots.appModel.TiendaAppModel;
 
 import DominioRobot.Robot;
 
-public class SistemaVentaWindow extends TransactionalDialog<Robot>{
+public class SistemaVentaWindow extends TransactionalDialog<TiendaAppModel>{
 
-	public SistemaVentaWindow(WindowOwner owner, Robot model) {
+	public SistemaVentaWindow(WindowOwner owner, TiendaAppModel model) {
 		super(owner, model);
-		model.pedirOferta();
+		model.realizarOferta();
 	}
 
 	@Override
@@ -23,10 +26,10 @@ public class SistemaVentaWindow extends TransactionalDialog<Robot>{
 		this.setTitle("Venta");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		labelBind(mainPanel, "Nombre:         ", Robot.NOMBRE_ROBOT);
-		labelBind(mainPanel, "Estado:         ", Robot.NIVEL_DE_DETERIORO);
-		labelBind(mainPanel, "Precio original:", Robot.PRECIO);
-		labelBind(mainPanel, "OFERTA:         ", Robot.OFERTA);
+		labelBind(mainPanel, "Nombre:         ", "nombre");
+		labelBind(mainPanel, "Estado:         ", "nivelDeDeterioro");
+		labelBind(mainPanel, "Precio original:", "precio");
+		labelBind(mainPanel, "OFERTA:         ", "oferta");
 		
 	}
 
@@ -49,4 +52,5 @@ public class SistemaVentaWindow extends TransactionalDialog<Robot>{
 		.onClick(new MessageSend(this, "cancel"));
 
 	}
+	
 }
