@@ -10,12 +10,14 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.WindowOwner;
 
+import robots.appModel.ReparacionAppModel;
+
 import DominioRobot.Jugador;
 
 
-public class SistemaReparacionWindow extends TransactionalDialog<Jugador>{
+public class SistemaReparacionWindow extends TransactionalDialog<ReparacionAppModel>{
 
-	public SistemaReparacionWindow(WindowOwner owner, Jugador model) {
+	public SistemaReparacionWindow(WindowOwner owner, ReparacionAppModel model) {
 		super(owner, model);
 	}
 	

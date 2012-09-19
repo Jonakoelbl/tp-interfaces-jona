@@ -33,7 +33,7 @@ public class SistemaMejoraWindow extends TransactionalDialog<Robot>{
 		Panel segundoPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
 		
 		Table<Mejora> table = new Table<Mejora>(segundoPanel,Mejora.class);
-		table.bindContentsToProperty("");
+		table.bindItemsToProperty("");
 		table.bindSelection(Robot.MEJORA_SELECCIONADA);
 	
 		Column<Mejora> performanceColumna = new Column<Mejora>(table);
