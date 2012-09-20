@@ -1,5 +1,7 @@
 package DominioRobot;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.uqbar.commons.model.ObservableUtils;
@@ -14,39 +16,39 @@ public class Robot {
 		PODER_EFECTIVO = "poderEfectivo",
 		PODER = "poder",
 		PRECIO = "precio",
-		MEJORA_SELECCIONADA = "mejoraSeleccionadas",
 		OFERTA = "oferta";
 	
 	private String nombreRobot;
-	private String propietario;
+	private Jugador propietario = null;
+	private List<Mejora> actualizaciones = new ArrayList<Mejora>();
 	private Integer nivelDeDeterioro = 0;
 	private Integer poderEfectivo;
 	private Integer poder ;
 	private Integer precio;
 	private Integer oferta;
-	private Mejora mejoraSeleccionada;
 	
 	public Robot(String nombre) {
 		this.nombreRobot = nombre;
 		this.poder = new Random().nextInt(20);
-		this.poderEfectivo = poder * (100 - nivelDeDeterioro) / 100;
+		this.poderEfectivo = poder * (100 - this.nivelDeDeterioro) / 100;
 		this.precio = this.poderEfectivo * 50;
 	}
 	
-	public void actualizarPoder(Integer mejoraDePoder) {
-		this.setPoder(this.poder + mejoraDePoder);		
+	public void actualizarPoder(Mejora mejora) {
+		this.poder += mejora.getMejoraDePoder();
+		this.actualizaciones.add(mejora);
 	}
 	
-	public void asignarPropietario(Jugador jg){
-		this.setPropietario(jg.getNombre());
-	}
-
-	public void pedirOferta(){
-		this.setOferta(Sistema.getInstancia().realizarOferta(this));		
+	public void fuisteReparado(Integer puntoAReparar){
+		this.nivelDeDeterioro -= puntoAReparar;
 	}
 	
-	public void recibirReparacion(Integer puntoAReparar){
-		this.setNivelDeDeterioro(this.getNivelDeDeterioro() - puntoAReparar);
+	public void fuisteComprado(Jugador jugador){
+		this.setPropietario(jugador);
+	}
+	
+	public void fuisteVendido() {
+		this.propietario = null;
 	}
 	//GETTERS AND SETTERS //
 	public void setNombreRobot(String nombreRobot) {
@@ -65,11 +67,11 @@ public class Robot {
 		return nivelDeDeterioro;
 	}
 
-	public void setPropietario(String propietario) {
+	public void setPropietario(Jugador propietario) {
 		this.propietario = propietario;
 	}
 
-	public String getPropietario() {
+	public Jugador getPropietario() {
 		return propietario;
 	}
 
@@ -96,15 +98,7 @@ public class Robot {
 	public Integer getPoderEfectivo() {
 		return poderEfectivo;
 	}
-
-	public void setMejoraSeleccionada(Mejora mejoraSeleccionada) {
-		this.mejoraSeleccionada = mejoraSeleccionada;
-	}
-
-	public Mejora getMejoraSeleccionada() {
-		return mejoraSeleccionada;
-	}
-
+	
 	public void setOferta(Integer oferta) {
 		this.oferta = oferta;
 	}
@@ -113,5 +107,5 @@ public class Robot {
 		return oferta;
 	}
 
-	
+
 }
