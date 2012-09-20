@@ -15,7 +15,7 @@ public class JugadorInicio {
 	public static final String ROBOTS_DEL_JUGADOR = "robots";
 	private Jugador jugador;
 	private Robot robotSeleccionado;
-	
+
 	public JugadorInicio(Jugador jugador) {
 		super();
 		this.jugador = jugador;
@@ -24,6 +24,19 @@ public class JugadorInicio {
 	public Jugador getJugador() {
 		return jugador;
 	}
+	
+	public void vender(){
+		this.getJugador().vender(this.getRobotSeleccionado());
+		List<Robot> robots = this.getRobots();
+		this.setRobots(null);
+		this.setRobots(robots);
+	}
+	
+	public void reparar(){
+		this.getJugador().reparar(this.getRobotSeleccionado());
+		
+	}
+	
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
 	}
@@ -42,15 +55,4 @@ public class JugadorInicio {
 		this.jugador.setMisRobots(robots);
 		ObservableUtils.forceFirePropertyChanged(this,"robots",this.getRobots());
 	}
-	
-	
-	public void vender(){
-		this.getJugador().vender(this.getRobotSeleccionado());
-		List<Robot> robots = this.getRobots();
-		this.setRobots(null);
-		this.setRobots(robots);
-	}
-	
-	
-
 }

@@ -2,6 +2,7 @@ package DominioRobot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.uqbar.commons.utils.Observable;
 
@@ -15,15 +16,12 @@ import org.uqbar.commons.utils.Observable;
 public class Tienda {
 	public static final String 
 		MEJORAS = "mejoras",
-		ROBOTS_EN_VENTA = "robotsEnVenta",
-		JUGADOR_LOGUEADO = "jugadorLogueado";
-	
+		ROBOTS_EN_VENTA = "robotsEnVenta";
+		
 	private List<Mejora> mejoras = new ArrayList<Mejora>();
 	private List<Robot> robotsEnVenta = new ArrayList<Robot>();
-	private Jugador jugadorLogueado;
 	
 	public Tienda(Jugador jugador) {
-		this.setJugadorLogueado(jugador);
 		
 		this.crearMejoras(new Mejora("Apredizaje de jiu-jitsu", 21, 250));
 		this.crearMejoras(new Mejora("Mochila voladora de propulsion", 4, 96));
@@ -35,8 +33,6 @@ public class Tienda {
 		this.agregarRobots(new Robot("RBT4"));
 	}
 	
-	
-	
 	protected void crearMejoras(Mejora mejora){
 		this.mejoras.add(mejora);
 	}
@@ -45,23 +41,49 @@ public class Tienda {
 		this.robotsEnVenta.add(robot);
 	}
 
+	public void venderMejora(Jugador jugador, Robot robot,Mejora mejora){
+		jugador.mejorar(robot, mejora);
+	}
+	
+	public void comprarRobot(Jugador jugador, Robot robot,Integer oferta){
+		if(aceptaOferta(oferta, robot)){
+			jugador.comprar(robot, oferta);
+			this.robotsEnVenta.remove(robot);
+		}
+	}
+	
+	public Integer realizarOferta(Robot unRobot) {
+		Integer random = 0;
+		do{random = new Random().nextInt(20);}while(random < 2);
+		return unRobot.getPrecio() * (random/100);
+	}
+	
+	protected boolean aceptaOferta(Integer oferta, Robot robot){
+		return (robot.getPrecio() * 0.1 >= oferta) || aceptarOfertaPrecioBase(oferta, robot.getPrecio()) ||
+		this.aceptarPrecio75Por(oferta, robot.getPrecio()) || this.aceptarPrecio10Por(oferta, robot.getPrecio());			
+	}
+	
+	protected boolean aceptarPrecio10Por(Integer oferta, Integer precioRobot) {
+		return precioRobot * 0.1 >= oferta ? this.compraAleatorea(0.09, oferta, precioRobot) : false;
+	}
+	
+	protected boolean aceptarPrecio75Por(Integer oferta, Integer precioRobot){
+		return precioRobot * 0.9 >= oferta ? this.compraAleatorea(0.5, oferta, precioRobot) : false;
+	}
+	
+	protected boolean aceptarOfertaPrecioBase(Integer oferta, Integer precioRobot){
+		return precioRobot == oferta ?  (this.compraAleatorea(0.9, oferta, precioRobot)) : false;
+	}
+	
+	protected boolean compraAleatorea(double porcentaje,Integer oferta, Integer precioRobot){
+		return (Math.random()) <= (Math.pow((porcentaje * ((double)oferta / precioRobot)), 2));
+	}
+	
 	public List<Mejora> getMejoras() {
 		return mejoras;
 	}
 
 	public List<Robot> getRobotsEnVenta() {
 		return robotsEnVenta;
-	}
-
-
-
-	public void setJugadorLogueado(Jugador jugadorLogueado) {
-		this.jugadorLogueado = jugadorLogueado;
-	}
-
-
-
-	public Jugador getJugadorLogueado() {
-		return jugadorLogueado;
 	}
 }
