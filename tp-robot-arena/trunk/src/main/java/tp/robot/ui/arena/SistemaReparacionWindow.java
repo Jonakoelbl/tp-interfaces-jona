@@ -10,14 +10,11 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.WindowOwner;
 
-import robots.appModel.ReparacionAppModel;
+import robots.appModel.JugadorInicio;
 
-import DominioRobot.Jugador;
+public class SistemaReparacionWindow extends TransactionalDialog<JugadorInicio>{
 
-
-public class SistemaReparacionWindow extends TransactionalDialog<ReparacionAppModel>{
-
-	public SistemaReparacionWindow(WindowOwner owner, ReparacionAppModel model) {
+	public SistemaReparacionWindow(WindowOwner owner, JugadorInicio model) {
 		super(owner, model);
 	}
 	
@@ -28,15 +25,15 @@ public class SistemaReparacionWindow extends TransactionalDialog<ReparacionAppMo
 		
 		Panel primerPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		new Label(primerPanel).setText("Deterioro del Robot");
-		new Label(primerPanel).bindValueToProperty(Jugador.DETERIORO_DEL_ROBOT);
+		new Label(primerPanel).bindValueToProperty("robotSeleccionado.nivelDeDeterioro");
 		
 		Panel segundoPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		new Label(segundoPanel).setText("Reparar deterioro");
-		new TextBox(segundoPanel).bindValueToProperty(Jugador.REPARAR_DETERIORO);
+		new TextBox(segundoPanel).bindValueToProperty("jugador.repararDeterioro");
 		
 		Panel tercerPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		new Label(tercerPanel).setText("costo");
-		new Label(tercerPanel).bindValueToProperty(Jugador.COSTO);
+		new Label(tercerPanel).bindValueToProperty("jugador.costo");
 	}
 	
 	@Override
