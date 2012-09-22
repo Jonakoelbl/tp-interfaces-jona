@@ -8,15 +8,12 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.lacar.ui.model.Action;
 
-import robots.appModel.TiendaAppModel;
+import robots.appModel.JugadorInicio;
 
-import DominioRobot.Robot;
+public class SistemaVentaWindow extends TransactionalDialog<JugadorInicio>{
 
-public class SistemaVentaWindow extends TransactionalDialog<TiendaAppModel>{
-
-	public SistemaVentaWindow(WindowOwner owner, TiendaAppModel model) {
+	public SistemaVentaWindow(WindowOwner owner, JugadorInicio model) {
 		super(owner, model);
 		model.realizarOferta();
 	}
@@ -26,10 +23,10 @@ public class SistemaVentaWindow extends TransactionalDialog<TiendaAppModel>{
 		this.setTitle("Venta");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		labelBind(mainPanel, "Nombre:         ", "nombre");
-		labelBind(mainPanel, "Estado:         ", "nivelDeDeterioro");
-		labelBind(mainPanel, "Precio original:", "precio");
-		labelBind(mainPanel, "OFERTA:         ", "oferta");
+		labelBind(mainPanel, "Nombre:         ", "robotSeleccionado.nombreRobot");
+		labelBind(mainPanel, "Estado:         ", "robotSeleccionado.nivelDeDeterioro");
+		labelBind(mainPanel, "Precio original:", "robotSeleccionado.precio");
+		labelBind(mainPanel, "OFERTA:         ", "tienda.oferta");
 		
 	}
 
