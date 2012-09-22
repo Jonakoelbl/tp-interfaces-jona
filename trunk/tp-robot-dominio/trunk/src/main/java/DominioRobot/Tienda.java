@@ -14,14 +14,14 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 public class Tienda {
-	public static final String 
-		MEJORAS = "mejoras",
-		ROBOTS_EN_VENTA = "robotsEnVenta";
+	public static final String MEJORAS = "mejoras";
+	public static final String ROBOTS_EN_VENTA = "robotsEnVenta";
 		
 	private List<Mejora> mejoras = new ArrayList<Mejora>();
 	private List<Robot> robotsEnVenta = new ArrayList<Robot>();
+	private Integer oferta;
 	
-	public Tienda(Jugador jugador) {
+	public Tienda() {
 		
 		this.crearMejoras(new Mejora("Apredizaje de jiu-jitsu", 21, 250));
 		this.crearMejoras(new Mejora("Mochila voladora de propulsion", 4, 96));
@@ -47,15 +47,23 @@ public class Tienda {
 	
 	public void comprarRobot(Jugador jugador, Robot robot,Integer oferta){
 		if(aceptaOferta(oferta, robot)){
-			jugador.comprar(robot, oferta);
-			this.robotsEnVenta.remove(robot);
+			jugador.vender(robot, oferta);
+			robot.fuisteVendido();
+			this.robotsEnVenta.add(robot);
 		}
 	}
 	
-	public Integer realizarOferta(Robot unRobot) {
+	public void realizarOferta(Robot unRobot) {
 		Integer random = 0;
-		do{random = new Random().nextInt(20);}while(random < 2);
-		return unRobot.getPrecio() * (random/100);
+		do{random = new Random().nextInt(20);}while(random <= 2);
+		this.setOferta(unRobot.getPrecio() * (random/100));
+	}
+
+	public void venderleRobot(Jugador jugador, Robot robotSeleccionado, Integer oferta) {
+		if(aceptaOferta(oferta, robotSeleccionado)){
+			jugador.comprar(robotSeleccionado, oferta);
+			this.robotsEnVenta.remove(robotSeleccionado);
+		}
 	}
 	
 	protected boolean aceptaOferta(Integer oferta, Robot robot){
@@ -86,4 +94,13 @@ public class Tienda {
 	public List<Robot> getRobotsEnVenta() {
 		return robotsEnVenta;
 	}
+
+	public void setOferta(Integer oferta) {
+		this.oferta = oferta;
+	}
+
+	public Integer getOferta() {
+		return oferta;
+	}
+
 }

@@ -10,20 +10,12 @@ import org.uqbar.commons.utils.TransactionalAndObservable;
 
 @TransactionalAndObservable
 public class Jugador {
-	public static final String 
-		MISROBOTS = "misRobots",
-		NOMBRE = "nombre",
-		DINERO = "dinero",
-		COSTO = "costo",
-		REPARAR_DETERIORO = "repararDeterioro",
-		DETERIORO_DEL_ROBOT = "deterioroDelRobot";
-	
-	private Tienda tienda = new Tienda(this);
 	private String nombre; 
 	private List<Robot> misRobots = new Vector<Robot>();
-	private Integer dinero = 3000, costo = 0,
-					repararDeterioro = 0,
-					deterioroDelRobot = 0;
+	private Integer dinero = 3000;
+	private Integer costo = 0;
+	private Integer repararDeterioro = 0;
+	private Integer deterioroDelRobot = 0;
 	
 	public Jugador(String unNombre) {
 		this.nombre = unNombre;
@@ -35,11 +27,15 @@ public class Jugador {
 		this.misRobots.add(new Robot("Arturito"));
 	}
 	
+	public void vender(Robot robot, Integer oferta){
+		this.dinero += oferta;
+		this.misRobots.remove(robot);
+	}
+	
 	public void comprar(Robot robot,Integer oferta){
 		this.dinero -= oferta;
 		robot.fuisteComprado(this);
-		this.misRobots.add(robot);
-		
+		this.misRobots.add(robot);	
 		ObservableUtils.forceFirePropertyChanged(this,"costo",this.getCosto());
 	}
 	
@@ -47,13 +43,12 @@ public class Jugador {
 		this.dinero -= this.costo;
 		robot.fuisteReparado(this.repararDeterioro);
 		this.repararDeterioro = 0;
-		ObservableUtils.forceFirePropertyChanged(this,"costo",this.getCosto());
+		this.setCosto(0);
 	}
 
 	public void mejorar(Robot robot, Mejora mejora){
 		this.dinero -= mejora.getPrecio();
 		robot.actualizarPoder(mejora);
-		ObservableUtils.forceFirePropertyChanged(this,"costo",this.getCosto());
 	}
 	
 	public void vender(Robot robotAVender){
@@ -118,7 +113,7 @@ public class Jugador {
 	}
 
 	public Integer getRepararDeterioro() {
-		this.setCosto(this.calcularCostoDeReparacion(this.deterioroDelRobot));
+		this.setCosto(this.calcularCostoDeReparacion(this.repararDeterioro));
 		return repararDeterioro;
 	}
 
@@ -132,13 +127,5 @@ public class Jugador {
 
 	public Integer getDeterioroDelRobot() {
 		return deterioroDelRobot;
-	}
-
-	public void setTienda(Tienda tienda) {
-		this.tienda = tienda;
-	}
-
-	public Tienda getTienda() {
-		return tienda;
 	}
 }

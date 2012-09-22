@@ -4,6 +4,10 @@ import org.uqbar.commons.utils.TransactionalAndObservable;
 
 @TransactionalAndObservable
 public class Mejora{
+	public static final String DESCRIPCION = "descripcion";
+	public static final String MEJORA_DE_PODER = "mejoraDePoder";
+	public static final String PRECIO = "precio";
+	
 	private String descripcion;
 	private Integer mejoraDePoder;
 	private Integer precio;
