@@ -66,7 +66,7 @@ public class JugadorInicio {
 	 */
 	public void realizarOferta(){
 		this.tienda.venderleRobotAJugador(this.jugador, this.robotSeleccionado, this.tienda.getOferta());
-		this.jugador.shis.getTienda().getAllRobotsForCompetition());
+		this.setContrincantes(this.getTienda().getAllRobotsForCompetition());
 		this.jugador.setDinero(this.jugador.getDinero());
 		this.jugador.setMisRobots(this.jugador.getMisRobots());
 	}
