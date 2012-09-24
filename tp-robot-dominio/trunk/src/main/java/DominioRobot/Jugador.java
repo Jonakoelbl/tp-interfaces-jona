@@ -11,12 +11,13 @@ import org.uqbar.commons.utils.TransactionalAndObservable;
 @TransactionalAndObservable
 public class Jugador {
 	private String nombre; 
+	private String password;
 	private List<Robot> misRobots = new Vector<Robot>();
 	private Integer dinero = 3000;
 	private Integer costo = 0;
 	private Integer repararDeterioro = 0;
 	private Integer deterioroDelRobot = 0;
-	
+	/**
 	public Jugador(String unNombre) {
 		this.nombre = unNombre;
 		this.misRobots.add(new Robot("Robotech"));
@@ -25,18 +26,37 @@ public class Jugador {
 		c.setNivelDeDeterioro(58);
 		this.misRobots.add(c);
 		this.misRobots.add(new Robot("Arturito"));
+	}**/
+	
+	/**
+	 * @Create an user in the system an it give him a new Robot...
+	 * @param unNombre
+	 * @param unPassword
+	 * @param unRobot
+	 * 
+	 */
+	public Jugador(String unNombre,String unPassword,Robot unRobot) {
+		this.nombre = unNombre;
+		this.password = unPassword;
+		unRobot.setPropietario(this);
+		this.misRobots.add(unRobot);
 	}
 	
 	public void vender(Robot robot, Integer oferta){
-		this.dinero += oferta;
-		this.misRobots.remove(robot);
+		this.setDinero(this.getDinero() + oferta);
+		this.getMisRobots().remove(robot);
 	}
 	
 	public void comprar(Robot robot,Integer oferta){
-		this.dinero -= oferta;
-		robot.fuisteComprado(this);
-		this.misRobots.add(robot);	
-		ObservableUtils.forceFirePropertyChanged(this,"costo",this.getCosto());
+		if(this.getDinero()>=oferta){
+			this.dinero -= oferta;
+			robot.fuisteComprado(this);
+			this.getMisRobots().add(robot);	
+			ObservableUtils.forceFirePropertyChanged(this,"costo",this.getCosto());
+		}
+		else{
+			throw new UserException("El Jugador no tiene suficiente dinero para realizar la accion");	
+		}
 	}
 	
 	public void reparar(Robot robot){
@@ -56,6 +76,7 @@ public class Jugador {
 		this.dinero += robotAVender.getOferta();
 		robotAVender.fuisteVendido();
 	}
+	
 	//*****VALIDACIONES**************//
 	
 	public void validar(){

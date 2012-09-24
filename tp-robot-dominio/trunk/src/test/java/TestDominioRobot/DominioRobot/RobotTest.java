@@ -25,11 +25,6 @@ public class RobotTest {
 
 		
 	}
-/*	
-	protected void setUp() throws Exception {
-		this.cfp = mock(CallForPaper.class);
-		this.afincomp = new AfinidadComparator(this.cfp);
-	}*/
 
 	@Test
 	public void testRobot() {

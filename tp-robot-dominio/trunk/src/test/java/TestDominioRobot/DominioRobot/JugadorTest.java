@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import DominioRobot.Jugador;
 import DominioRobot.Robot;
+import static org.junit.Assert.assertThat;
 
 public class JugadorTest {
 	Jugador unJugador;
@@ -32,7 +33,7 @@ public class JugadorTest {
 		Integer dinero = this.unJugador.getDinero() + 98;
 		this.unJugador.vender(this.unRobot, 98);
 		assertEquals(this.unJugador.getDinero(), dinero);
-		assertFalse(this.unJugador.getMisRobots()==unaLista);
+		assertThat(this.unJugador.getMisRobots(), not(hasItem(this.unRobot)));
 	}
 
 	
