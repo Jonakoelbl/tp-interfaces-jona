@@ -18,9 +18,14 @@ public class JugadorInicio {
 	public static final String ROBOTS_EN_VENTA = "robotsEnVenta";
 	public static final String MEJORAS_EN_VENTA = "mejoras";
 	public static final String MEJORA_SELECCIONADO = "mejoraSeleccionado";
+	public static final String ROBOTS_POSIBLES_CONTRINCANTES = "contrincantes";
+	public static final String CONTRINCANTE_ELEGIDO = "contrincanteSeleccionado";
+	public static final String APUESTA = "apuestaRealizada";
 	
 	private Jugador jugador;
 	private Robot robotSeleccionado;
+	private Robot contrincanteSeleccionado;
+	private Integer apuestaRealizada;
 	private Tienda tienda = new Tienda();
 	private Mejora mejoraSeleccionado;
 
@@ -53,10 +58,24 @@ public class JugadorInicio {
 		this.getJugador().reparar(this.getRobotSeleccionado());
 	}
 	
-	public void realizarOferta(){
+	/*public void realizarOferta(){
 		this.tienda.realizarOferta(this.robotSeleccionado);
+	}*/
+	/**
+	 * Here the system must be return the user that init session
+	 */
+	public void realizarOferta(){
+		this.tienda.venderleRobotAJugador(this.jugador, this.robotSeleccionado, this.tienda.getOferta());
+		this.jugador.shis.getTienda().getAllRobotsForCompetition());
+		this.jugador.setDinero(this.jugador.getDinero());
+		this.jugador.setMisRobots(this.jugador.getMisRobots());
 	}
-	
+	/**
+	 * 
+	 */
+	public void competir(){
+		this.tienda.competir(this.apuestaRealizada, this.robotSeleccionado, this.robotSeleccionado);
+	}
 	///////***********/////
 	/////// ASSESORS  /////
 	///////////////////////
@@ -77,9 +96,31 @@ public class JugadorInicio {
 	public Robot getRobotSeleccionado() {
 		return robotSeleccionado;
 	}
-	
+
+	public Integer getApuestaRealizada() {
+		return apuestaRealizada;
+	}
+
+	public void setApuestaRealizada(Integer apuestaRealizada) {
+		this.apuestaRealizada = apuestaRealizada;
+	}
+
+	/**
+	 * 
+	 * @return the list of robots 
+	 */
+	public List<Robot> getContrincantes(){
+		return this.tienda.getAllRobotsForCompetition();
+	}
+	public void setContrincantes(List<Robot> robots){
+		this.tienda.setRobotsEnCompetencia(robots);
+		ObservableUtils.forceFirePropertyChanged(this,"robots",this.getContrincantes());
+	}
 	public List<Mejora> getMejoras(){
 		return this.tienda.getMejoras();
+	}
+	public List<Robot> getRobotsDelSistema(){
+		return this.tienda.getRobotsEnVenta();
 	}
 	
 	public List<Robot> getRobotsEnVenta(){
@@ -113,5 +154,13 @@ public class JugadorInicio {
 
 	public Mejora getMejoraSeleccionado() {
 		return mejoraSeleccionado;
+	}
+
+	public Robot getContrincanteSeleccionado() {
+		return contrincanteSeleccionado;
+	}
+
+	public void setContrincanteSeleccionado(Robot contrincanteSeleccionado) {
+		this.contrincanteSeleccionado = contrincanteSeleccionado;
 	}
 }
