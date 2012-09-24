@@ -11,15 +11,16 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.MainWindow;
+import org.uqbar.commons.model.UserException;
 
 import robots.appModel.JugadorInicio;
 import DominioRobot.Jugador;
 import DominioRobot.Robot;
+import DominioRobot.Tienda;
 
 public class JugadorWindow extends MainWindow<JugadorInicio> {
-	
 	public JugadorWindow() {
-		super(new JugadorInicio(new Jugador("Pepe")));
+		super(new JugadorInicio(new Tienda().getJugadores().get(0)));
 	}
 	
 	
@@ -50,6 +51,8 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 		
 		Label otrosRobots = new Label(mainPanel);
 		otrosRobots.setText("Contrincantes");
+		Panel sextoPanel = this.crearTablaDeRobotsContrincantes(mainPanel);
+		crearBoton(sextoPanel, "Competir", "introducirApuesta");
 		
 		
 		Panel quintoPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
@@ -86,6 +89,41 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 		//table.setWidth(500).setHeigth(200);
 		return panel;
 	}
+	/**
+	 * 
+	 * @param mainPanel
+	 * @return
+	 */
+	private Panel crearTablaDeRobotsContrincantes(Panel mainPanel) {
+		Panel panel = new Panel(mainPanel).setLayout(new HorizontalLayout());
+		
+		Table<Robot> table = new Table<Robot>(panel, Robot.class);
+		table.bindItemsToProperty(JugadorInicio.ROBOTS_POSIBLES_CONTRINCANTES);
+		table.bindSelection(JugadorInicio.CONTRINCANTE_ELEGIDO);
+
+		Column<Robot> propietarioColumna = new Column<Robot>(table);
+		propietarioColumna.setTitle("Propietario");
+		propietarioColumna.setFixedSize(150);
+		propietarioColumna.bindContentsToProperty(Robot.PROPIETARIO);
+		
+		Column<Robot> nombreColumna = new Column<Robot>(table);
+		nombreColumna.setTitle("Nombre del robot");
+		nombreColumna.setFixedSize(150);
+		nombreColumna.bindContentsToProperty(Robot.NOMBRE_ROBOT);
+		
+		Column<Robot> poderColumna = new Column<Robot>(table);
+		poderColumna.setTitle("Poder de ataque");
+		poderColumna.setFixedSize(150);
+		poderColumna.bindContentsToProperty(Robot.PODER);
+		
+		Column<Robot> performanceColumna = new Column<Robot>(table);
+		performanceColumna.setTitle("Nivel de deterioro");
+		performanceColumna.setFixedSize(200);
+		performanceColumna.bindContentsToProperty(Robot.NIVEL_DE_DETERIORO);
+		
+		//table.setWidth(500).setHeigth(200);
+		return panel;
+	}
 
 	public void repararElRobot(){
 		this.openDialog(new SistemaReparacionWindow(this, this.getModelObject()),"reparar");
@@ -93,6 +131,9 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 	
 	public void mejorarUnRobot(){
 		this.openDialog(new SistemaMejoraWindow(this, this.getModelObject()), "mejorar");
+	}
+	public void introducirApuesta(){
+		this.openDialog(new SistemaCompetirWindow(this, this.getModelObject()), "competir");
 	}
 	
 	public void venderUnRobot(){
@@ -103,6 +144,11 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 	public void comprarUnRobot(){
 		this.openDialog(new SistemaCompraWindow(this,this.getModelObject()), "comprar");
 	}
+	/**
+	 * 
+	 * @param dialog
+	 * @param nombreMetodo
+	 */
 	
 	protected void openDialog(Dialog<?> dialog, String nombreMetodo){
 		dialog.onAccept(new MessageSend(this.getModelObject(), nombreMetodo));
