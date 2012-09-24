@@ -181,8 +181,10 @@ public class Tienda {
 	 * 
 	 * @return a List Robots for competition join the system's robots and the users robots
 	 */
+	
 	public List<Robot> getAllRobotsForCompetition(){
-		this.robotsEnCompetencia = new ArrayList<Robot>(this.getRobotsEnVenta());
+		this.robotsEnCompetencia = new ArrayList<Robot>();
+		this.robotsEnCompetencia.addAll(this.getRobotsEnVenta());
 		this.robotsEnCompetencia.addAll(this.getRobotsDeJugadores());
 		return this.robotsEnCompetencia;
 	}
@@ -209,7 +211,6 @@ public class Tienda {
 		if(this.aceptarOfertaDeJugador(unaOferta, robotSeleccionado)){
 			unJugador.comprar(robotSeleccionado, unaOferta);
 			this.robotsEnVenta.remove(robotSeleccionado);
-			this.getAllRobotsForCompetition().remove(robotSeleccionado);
 		}
 		else{
 			this.cobraElFeedPorOfertar(unJugador, unaOferta);
@@ -258,7 +259,7 @@ public class Tienda {
 	public List<Mejora> getMejoras() {
 		return mejoras;
 	}
-
+	
 	public List<Robot> getRobotsEnVenta() {
 		return robotsEnVenta;
 	}
@@ -285,6 +286,10 @@ public class Tienda {
 
 	public void setRobotsEnCompetencia(List<Robot> robotsEnCompetencia) {
 		this.robotsEnCompetencia = robotsEnCompetencia;
+	}
+
+	public void setRobotsEnVenta(List<Robot> robotsEnVenta) {
+		this.robotsEnVenta = robotsEnVenta;
 	}
 
 }
