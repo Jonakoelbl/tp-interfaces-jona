@@ -86,7 +86,7 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 		performanceColumna.setFixedSize(200);
 		performanceColumna.bindContentsToProperty(Robot.NIVEL_DE_DETERIORO);
 		
-		//table.setWidth(500).setHeigth(200);
+		table.setWidth(500).setHeigth(100);
 		return panel;
 	}
 	/**
@@ -121,7 +121,7 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 		performanceColumna.setFixedSize(200);
 		performanceColumna.bindContentsToProperty(Robot.NIVEL_DE_DETERIORO);
 		
-		//table.setWidth(500).setHeigth(200);
+		table.setWidth(500).setHeigth(200);
 		return panel;
 	}
 
@@ -146,7 +146,7 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 	}
 	/**
 	 * 
-	 * @param dialog
+	 * @param dialog 
 	 * @param nombreMetodo
 	 */
 	
