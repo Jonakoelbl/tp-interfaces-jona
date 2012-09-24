@@ -55,19 +55,19 @@ public class SistemaMejoraWindow extends TransactionalDialog<JugadorInicio>{
 		
 	}
 	
-	@Override
-	protected void addActions(Panel actions) {
-		new Button(actions)
-		.setCaption("Aceptar")
-		.onClick(new MessageSend(this, "accept"))
-		.setAsDefault()
-		.disableOnError();
-
-		new Button(actions) //
-		.setCaption("Cancelar")
-		.onClick(new MessageSend(this, "cancel"));
-
-	}
-	
+//	@Override
+//	protected void addActions(Panel actions) {
+//		new Button(actions)
+//		.setCaption("Aceptar")
+//		.onClick(new MessageSend(this, "accept"))
+//		.setAsDefault()
+//		.disableOnError();
+//
+//		new Button(actions) //
+//		.setCaption("Cancelar")
+//		.onClick(new MessageSend(this, "cancel"));
+//
+//	}
+//	
 	
 }
