@@ -9,16 +9,23 @@ import org.junit.Before;
 import org.junit.Test;
 
 import DominioRobot.Jugador;
+import DominioRobot.Mejora;
 import DominioRobot.Robot;
 import static org.junit.Assert.assertThat;
 
 public class JugadorTest {
 	Jugador unJugador;
+	Robot robotInicio;
+	Mejora unaMejora;
 	Robot unRobot;
 	Robot unRobotB;
 	@Before
 	public void setUp() throws Exception {
-		this.unJugador = new Jugador("Diego");
+		this.robotInicio = mock(Robot.class);
+		when(this.robotInicio.getPropietario()).thenReturn(this.unJugador);
+		this.unJugador = new Jugador("Diego","comovatodo",this.robotInicio);
+		this.unaMejora = mock(Mejora.class);
+		when(this.unaMejora.getPrecio()).thenReturn(10);
 		this.unRobot = mock(Robot.class);
 		this.unRobotB = mock(Robot.class);
 		this.unJugador.comprar(this.unRobot, 107);
@@ -26,16 +33,13 @@ public class JugadorTest {
 		
 	}
 
-
 	@Test
 	public void testVender() {
-		List <Robot> unaLista = this.unJugador.getMisRobots();
 		Integer dinero = this.unJugador.getDinero() + 98;
 		this.unJugador.vender(this.unRobot, 98);
-		assertEquals(this.unJugador.getDinero(), dinero);
-		assertThat(this.unJugador.getMisRobots(), not(hasItem(this.unRobot)));
+		assertTrue(this.unJugador.getDinero()==dinero);
+		assertFalse(this.unJugador.getMisRobots().contains(this.unRobot));
 	}
-
 	
 	@Test
 	public void testComprar() {
@@ -48,33 +52,10 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void testReparar() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testMejorar() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testVenderRobot() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testValidar() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIngresoNumero() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCalcularCostoDeReparacion() {
-		fail("Not yet implemented");
+		Integer saldo = this.unJugador.getDinero() - this.unaMejora.getPrecio();
+		this.unJugador.mejorar(this.robotInicio, this.unaMejora);
+		assertTrue(this.unJugador.getDinero()== saldo);
 	}
 
 }
