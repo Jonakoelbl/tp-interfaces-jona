@@ -24,13 +24,14 @@ public class CompetirAppModel {
 	private Robot robotSeleccionado;
 	private Robot contrincanteSeleccionado;
 	private Integer apuestaRealizada;
-	private Tienda tienda = new Tienda();
+	private Tienda tienda;// = new Tienda();
 
 
-	public CompetirAppModel(Jugador unJugador, Robot unDesafiante, Robot unContrincante) {
+	public CompetirAppModel(Jugador unJugador, Robot unDesafiante, Robot unContrincante, Tienda tienda) {
 		this.robotSeleccionado = unDesafiante;
 		this.setContrincanteSeleccionado(unContrincante);
 		this.setJugador(unJugador);
+		this.tienda = tienda;
 	}
 	/**
 	 * 
