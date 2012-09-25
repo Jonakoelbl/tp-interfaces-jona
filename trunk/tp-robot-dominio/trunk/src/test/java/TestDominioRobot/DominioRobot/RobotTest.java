@@ -21,9 +21,7 @@ public class RobotTest {
 		this.unRobot.setNivelDeDeterioro(5);
 		this.unaMejora = mock(Mejora.class);
 		when(this.unaMejora.getMejoraDePoder()).thenReturn(3);
-		this.unUsuario = mock(Jugador.class);
-
-		
+		this.unUsuario = mock(Jugador.class);	
 	}
 
 	@Test
