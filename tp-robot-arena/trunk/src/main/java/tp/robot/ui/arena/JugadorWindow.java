@@ -2,7 +2,6 @@ package tp.robot.ui.arena;
 
 
 import org.uqbar.arena.actions.MessageSend;
-import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -12,13 +11,11 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.MainWindow;
-import org.uqbar.commons.model.UserException;
 
 import robots.appModel.CompetirAppModel;
 import robots.appModel.JugadorInicio;
 import robots.appModel.ReparacionAppModel;
 import robots.appModel.VentaAppModel;
-import DominioRobot.Jugador;
 import DominioRobot.Robot;
 import DominioRobot.Tienda;
 
@@ -33,29 +30,37 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 		
 		mainPanel.setLayout(new VerticalLayout());
 		
+		createDatosJugador(mainPanel);
+		crearTableMisRobots(mainPanel);		
+		crearSeccionContrincantes(mainPanel);
+	}
+
+	protected void crearSeccionContrincantes(Panel mainPanel) {
+		Label otrosRobots = new Label(mainPanel);
+		otrosRobots.setText("Contrincantes");
+		Panel sextoPanel = this.crearTablaDeRobotsContrincantes(mainPanel);
+		crearBoton(sextoPanel, "Competir", "introducirApuesta");
+	}
+
+	protected void crearTableMisRobots(Panel mainPanel) {
+		Panel segundoPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
+		Label misRobots = new Label(segundoPanel);
+		misRobots.setText("Mis Robots     ");
+		crearBoton(segundoPanel, "Comprar", "comprarUnRobot");
+		Panel tercerPanel = this.crearTablaDeRobots(mainPanel);
+		Panel cuartoPanel = new Panel(tercerPanel).setLayout(new VerticalLayout());
+		crearBoton(cuartoPanel, "Reparar", "repararElRobot");			
+		crearBoton(cuartoPanel, "Mejorar", "mejorarUnRobot");
+		crearBoton(cuartoPanel, "Vender", "venderUnRobot");
+	}
+
+	protected void createDatosJugador(Panel mainPanel) {
 		Panel primerPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		Label nombreJugador = new Label(primerPanel);
 		nombreJugador.bindValueToProperty("jugador.nombre");
 		
 		Label dinero = new Label(primerPanel);
 		dinero.bindValueToProperty("jugador.dinero");
-		
-		Panel segundoPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
-		Label misRobots = new Label(segundoPanel);
-		misRobots.setText("Mis Robots     ");
-		crearBoton(segundoPanel, "Comprar", "comprarUnRobot");
-	
-		Panel tercerPanel = this.crearTablaDeRobots(mainPanel);
-		
-		Panel cuartoPanel = new Panel(tercerPanel).setLayout(new VerticalLayout());
-		crearBoton(cuartoPanel, "Reparar", "repararElRobot");			
-		crearBoton(cuartoPanel, "Mejorar", "mejorarUnRobot");
-		crearBoton(cuartoPanel, "Vender", "venderUnRobot");		
-		
-		Label otrosRobots = new Label(mainPanel);
-		otrosRobots.setText("Contrincantes");
-		Panel sextoPanel = this.crearTablaDeRobotsContrincantes(mainPanel);
-		crearBoton(sextoPanel, "Competir", "introducirApuesta");
 	}
 
 	private void crearBoton(Panel panel, String caption, String nombreMetodo ) {
@@ -128,22 +133,19 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 	public void repararElRobot(){
 		ReparacionAppModel model = new ReparacionAppModel(this.getModelObject().getJugador(), this.getModelObject().getRobotSeleccionado());
 		Dialog<?> dialog = new SistemaReparacionWindow(this, model);
-		dialog.onAccept(null);
 		dialog.open();
-		//this.openDialog(new SistemaReparacionWindow(this, this.getModelObject()),"reparar");
 	}
 	
 	public void mejorarUnRobot(){
 		this.openDialog(new SistemaMejoraWindow(this, this.getModelObject()), "mejorar");
 	}
+
 	public void introducirApuesta(){
 		CompetirAppModel model = new CompetirAppModel(this.getModelObject().getJugador(), 
 														this.getModelObject().getRobotSeleccionado(), 
 														this.getModelObject().getContrincanteSeleccionado(),
 														this.getModelObject().getTienda());
-		Dialog<?> dialog = new SistemaCompetirWindow(this, model);
-		dialog.open();
-		//this.openDialog(new SistemaCompraWindow(this,this.getModelObject()), "comprar");
+		new SistemaCompetirWindow(this, model).open();
 	}
 	
 	public void venderUnRobot(){
@@ -156,7 +158,7 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 	}
 	 
 	public void comprarUnRobot(){
-		this.openDialog(new SistemaCompraWindow(this,this.getModelObject()), "comprar");
+		this.openDialog(new SistemaCompraWindow(this, this.getModelObject()), "comprar");
 	}
 	/**
 	 * 

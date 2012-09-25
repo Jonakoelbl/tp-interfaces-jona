@@ -1,7 +1,6 @@
 package tp.robot.ui.arena;
 
 import org.uqbar.arena.actions.MessageSend;
-import org.uqbar.arena.aop.windows.TransactionalDialog;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -10,9 +9,7 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.lacar.ui.model.Action;
 
-import robots.appModel.JugadorInicio;
 import robots.appModel.ReparacionAppModel;
 
 public class SistemaReparacionWindow extends Dialog<ReparacionAppModel>{
@@ -40,21 +37,22 @@ public class SistemaReparacionWindow extends Dialog<ReparacionAppModel>{
 	}
 
 	@Override
-	public void onAccept(Action action) {
-		super.onAccept(new MessageSend(this.getModelObject(), "reparar"));
-	}
-	
-	@Override
 	protected void addActions(Panel actions) {
 		new Button(actions)
 		.setCaption("Aceptar")
-		.onClick(new MessageSend(this.getModelObject(), "accept"))
+		.onClick(new MessageSend(this, "accept"))
 		.setAsDefault()
 		.disableOnError();
 
 		new Button(actions) //
 		.setCaption("Cancelar")
 		.onClick(new MessageSend(this, "cancel"));
-
 	}
+	
+	@Override
+	public void accept() {
+		this.getModelObject().reparar();
+		super.accept();
+	}
+	
 }

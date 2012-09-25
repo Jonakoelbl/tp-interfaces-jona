@@ -1,7 +1,6 @@
 package tp.robot.ui.arena;
 
 import org.uqbar.arena.actions.MessageSend;
-import org.uqbar.arena.aop.windows.TransactionalDialog;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -9,14 +8,13 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
 import robots.appModel.JugadorInicio;
-
 import DominioRobot.Mejora;
-import DominioRobot.Robot;
 
-public class SistemaMejoraWindow extends TransactionalDialog<JugadorInicio>{
+public class SistemaMejoraWindow extends Dialog<JugadorInicio>{
 	
 	public SistemaMejoraWindow(WindowOwner owner, JugadorInicio model) {
 		super(owner, model);
