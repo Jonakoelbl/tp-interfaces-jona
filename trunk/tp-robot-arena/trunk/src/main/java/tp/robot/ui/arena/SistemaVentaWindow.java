@@ -1,18 +1,17 @@
 package tp.robot.ui.arena;
 
 import org.uqbar.arena.actions.MessageSend;
-import org.uqbar.arena.aop.windows.TransactionalDialog;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
-import robots.appModel.JugadorInicio;
 import robots.appModel.VentaAppModel;
 
-public class SistemaVentaWindow extends TransactionalDialog<VentaAppModel>{
+public class SistemaVentaWindow extends Dialog<VentaAppModel>{
 
 	public SistemaVentaWindow(WindowOwner owner, VentaAppModel model) {
 		super(owner, model);
