@@ -1,5 +1,6 @@
 package robots.appModel;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import DominioRobot.Jugador;
@@ -12,8 +13,8 @@ public class ReparacionAppModel {
 	
 	private Jugador jugador;
 	private Robot robotAReparar;
-	private double deterioroAReparar;
-	private double costo;
+	private int deterioroAReparar;
+	private int costo;
 	
 	public ReparacionAppModel(Jugador jugador, Robot robotSeleccionado) {
 		this.jugador = jugador;
@@ -21,7 +22,21 @@ public class ReparacionAppModel {
 	}
 	
 	public void reparar(){
-		this.jugador.reparar(this.robotAReparar);
+		this.validar();
+		this.jugador.reparar(this.robotAReparar, this.deterioroAReparar, this.costo);
+	}
+	
+	public void validar(){
+		if(this.jugador.getDinero() < this.costo)
+			throw new UserException("El Jugador no tiene suficiente dinero para realizar la accion");
+		if(deterioroAReparar > getRobotAReparar().getNivelDeDeterioro())
+			throw new UserException("El porcentaje a reparar supera al deterioro del robot");
+		if (!this.ingresoNumero()) 
+			throw new UserException("Debe ingresar número");
+	}
+	
+	public boolean ingresoNumero() {
+		return this.deterioroAReparar > 0;
 	}
 	
 	public Jugador getJugador() {
@@ -40,20 +55,20 @@ public class ReparacionAppModel {
 		this.robotAReparar = robotAReparar;
 	}
 
-	public double getDeterioroAReparar() {
+	public int getDeterioroAReparar() {
 		this.setCosto(this.deterioroAReparar * 25);
 		return deterioroAReparar;
 	}
 
-	public void setDeterioroAReparar(double deterioroAReparar) {
+	public void setDeterioroAReparar(int deterioroAReparar) {
 		this.deterioroAReparar = deterioroAReparar;
 	}
 
-	public double getCosto() {
+	public int getCosto() {
 		return costo;
 	}
 
-	public void setCosto(double costo) {
+	public void setCosto(int costo) {
 		this.costo = costo;
 	}
 }

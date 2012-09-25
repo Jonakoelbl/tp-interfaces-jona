@@ -57,10 +57,6 @@ public class JugadorInicio {
 		this.setRobots(robots);
 	}
 	
-	public void reparar(){
-		this.getJugador().reparar(this.getRobotSeleccionado());
-	}
-	
 	public void darOfertaDeUnRobot(){
 		this.tienda.realizarOferta(this.robotSeleccionado);
 	}
@@ -69,32 +65,14 @@ public class JugadorInicio {
 	 */
 	public void realizarOferta(){
 		this.tienda.venderleRobotAJugador(this.jugador, this.robotSeleccionado, this.tienda.getOferta());
-		this.jugador.setDinero(this.jugador.getDinero());
-		this.jugador.setMisRobots(this.jugador.getMisRobots());
-		List<Robot> contrincates = this.getContrincantes();
-		this.setContrincantes(null);
-		this.setContrincantes(contrincates);
+		ObservableUtils.forceFirePropertyChanged(this, "robotsEnVenta", this.getRobotsEnVenta());
+		ObservableUtils.forceFirePropertyChanged(this, "contrincantes", this.getRobotsEnVenta());
 	}
-	/**
-	 * 
-	 */
-	public void competir(){
-		this.tienda.competir(this.apuestaRealizada, this.robotSeleccionado, this.robotSeleccionado);
-	}
+	
 	///////***********/////
 	/////// ASSESORS  /////
 	///////////////////////
 		
-	public Integer costo(){
-		return this.jugador.getCosto();
-	}
-	
-	public Integer getReparaDeterioro(){
-		return this.jugador.getRepararDeterioro();
-	}
-	public void setRepararDeterioro(Integer deterioro){
-		this.jugador.setRepararDeterioro(deterioro);
-	}
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
 	}
@@ -131,7 +109,7 @@ public class JugadorInicio {
 	
 	public void setRobotsEnVenta(List<Robot> robots){
 		this.tienda.setRobotsEnVenta(robots);
-		ObservableUtils.forceFirePropertyChanged(this,"robotsEnVenta",this.getRobotsEnVenta());
+		ObservableUtils.forceFirePropertyChanged(this, "robotsEnVenta", this.getRobotsEnVenta());
 	}
 	
 	public List<Robot> getRobotsEnVenta(){
