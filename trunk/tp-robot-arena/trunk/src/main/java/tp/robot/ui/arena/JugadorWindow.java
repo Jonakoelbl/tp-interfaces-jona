@@ -2,6 +2,7 @@ package tp.robot.ui.arena;
 
 
 import org.uqbar.arena.actions.MessageSend;
+import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -26,7 +27,6 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 		super(new JugadorInicio(new Tienda().getJugadores().get(0)));
 	}
 	
-	
 	@Override
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Panel Jugador");
@@ -50,16 +50,12 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 		Panel cuartoPanel = new Panel(tercerPanel).setLayout(new VerticalLayout());
 		crearBoton(cuartoPanel, "Reparar", "repararElRobot");			
 		crearBoton(cuartoPanel, "Mejorar", "mejorarUnRobot");
-		crearBoton(cuartoPanel, "Vender", "venderUnRobot");
+		crearBoton(cuartoPanel, "Vender", "venderUnRobot");		
 		
 		Label otrosRobots = new Label(mainPanel);
 		otrosRobots.setText("Contrincantes");
 		Panel sextoPanel = this.crearTablaDeRobotsContrincantes(mainPanel);
 		crearBoton(sextoPanel, "Competir", "introducirApuesta");
-		
-		
-		Panel quintoPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
-		
 	}
 
 	private void crearBoton(Panel panel, String caption, String nombreMetodo ) {
@@ -141,7 +137,10 @@ public class JugadorWindow extends MainWindow<JugadorInicio> {
 		this.openDialog(new SistemaMejoraWindow(this, this.getModelObject()), "mejorar");
 	}
 	public void introducirApuesta(){
-		CompetirAppModel model = new CompetirAppModel(this.getModelObject().getJugador(), this.getModelObject().getRobotSeleccionado(), this.getModelObject().getContrincanteSeleccionado());
+		CompetirAppModel model = new CompetirAppModel(this.getModelObject().getJugador(), 
+														this.getModelObject().getRobotSeleccionado(), 
+														this.getModelObject().getContrincanteSeleccionado(),
+														this.getModelObject().getTienda());
 		Dialog<?> dialog = new SistemaCompetirWindow(this, model);
 		dialog.open();
 		//this.openDialog(new SistemaCompraWindow(this,this.getModelObject()), "comprar");

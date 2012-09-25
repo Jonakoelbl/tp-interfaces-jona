@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
 import robots.appModel.CompetirAppModel;
@@ -18,7 +19,7 @@ import robots.appModel.JugadorInicio;
 import DominioRobot.Mejora;
 import DominioRobot.Robot;
 
-public class SistemaCompetirWindow extends TransactionalDialog<CompetirAppModel>{
+public class SistemaCompetirWindow extends Dialog<CompetirAppModel>{
 	
 	public SistemaCompetirWindow(WindowOwner owner, CompetirAppModel model) {
 		super(owner, model);
@@ -47,19 +48,19 @@ public class SistemaCompetirWindow extends TransactionalDialog<CompetirAppModel>
 		
 	}
 	
-//	@Override
-//	protected void addActions(Panel actions) {
-//		new Button(actions)
-//		.setCaption("Aceptar")
-//		.onClick(new MessageSend(this, "accept"))
-//		.setAsDefault()
-//		.disableOnError();
-//
-//		new Button(actions) //
-//		.setCaption("Cancelar")
-//		.onClick(new MessageSend(this, "cancel"));
-//
-//	}
+	/*@Override
+	protected void addActions(Panel actions) {
+		new Button(actions)
+		.setCaption("Aceptar")
+		.onClick(new MessageSend(this, "accept"))
+		.setAsDefault()
+		.disableOnError();
+
+		new Button(actions) //
+		.setCaption("Cancelar")
+		.onClick(new MessageSend(this, "cancel"));
+
+	}*/
 	
 	
 }
