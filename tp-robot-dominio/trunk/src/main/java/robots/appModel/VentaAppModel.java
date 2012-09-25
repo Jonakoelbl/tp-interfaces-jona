@@ -2,10 +2,13 @@ package robots.appModel;
 
 import java.util.List;
 
+import org.uqbar.commons.utils.Observable;
+
 import DominioRobot.Jugador;
 import DominioRobot.Robot;
 import DominioRobot.Tienda;
 
+@Observable
 public class VentaAppModel {
 	public static final String JUGADOR = "jugador";
 	public static final String ROBOT_NOMBRE= "robotNombre";
@@ -19,10 +22,11 @@ public class VentaAppModel {
 	private Tienda tienda;
 	private JugadorInicio model;
 	
-	public VentaAppModel(JugadorInicio model, Jugador jugador, Robot robotSeleccionado) {
+	public VentaAppModel(JugadorInicio model, Jugador jugador, Robot robotSeleccionado, Tienda tienda) {
 		this.jugador = jugador;
 		this.robotAVender = robotSeleccionado;
 		this.model = model;
+		this.tienda = tienda;
 	}
 	
 	public void vender(){
@@ -31,7 +35,7 @@ public class VentaAppModel {
 		this.model.setRobots(null);
 		this.model.setRobots(robots);
 	}
-	
+
 	public void generarOferta(){
 		this.tienda.realizarOferta(robotAVender);
 	}

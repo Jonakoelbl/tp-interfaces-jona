@@ -39,6 +39,7 @@ public class Jugador {
 		this.nombre = unNombre;
 		this.password = unPassword;
 		unRobot.setPropietario(this);
+		unRobot.setNivelDeDeterioro(50);
 		this.misRobots.add(unRobot);
 	}
 	
