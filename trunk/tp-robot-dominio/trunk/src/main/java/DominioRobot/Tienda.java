@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.utils.TransactionalAndObservable;
 
 /**
  * La Tienda se encargar de brindar accesorios al Jugador tanto en comprar un robot como en mejorarlo
@@ -14,7 +15,7 @@ import org.uqbar.commons.utils.Observable;
  *
  */
 
-@Observable
+@TransactionalAndObservable
 public class Tienda {
 	public static final String MEJORAS = "mejoras";
 	public static final String ROBOTS_EN_VENTA = "robotsEnVenta";

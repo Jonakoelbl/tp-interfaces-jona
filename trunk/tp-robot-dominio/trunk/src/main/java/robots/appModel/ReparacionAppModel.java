@@ -1,11 +1,13 @@
 package robots.appModel;
 
+import org.uqbar.commons.utils.Observable;
+
 import DominioRobot.Jugador;
 import DominioRobot.Robot;
 
+@Observable
 public class ReparacionAppModel {
 	public static final String COSTO = "costo";
-	public static final String DETERIORO_DEL_ROBOT = "deterioroDelRobot";
 	public static final String DETERIORO_A_REPARAR = "deterioroAReparar";
 	
 	private Jugador jugador;
@@ -20,10 +22,6 @@ public class ReparacionAppModel {
 	
 	public void reparar(){
 		this.jugador.reparar(this.robotAReparar);
-	}
-
-	public void getDeterioroDelRobot(){
-		this.robotAReparar.getNivelDeDeterioro();
 	}
 	
 	public Jugador getJugador() {
@@ -43,7 +41,7 @@ public class ReparacionAppModel {
 	}
 
 	public double getDeterioroAReparar() {
-		this.setCosto(this.getDeterioroAReparar() * 25);
+		this.setCosto(this.deterioroAReparar * 25);
 		return deterioroAReparar;
 	}
 

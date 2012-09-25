@@ -61,9 +61,9 @@ public class JugadorInicio {
 		this.getJugador().reparar(this.getRobotSeleccionado());
 	}
 	
-	/*public void realizarOferta(){
+	public void darOfertaDeUnRobot(){
 		this.tienda.realizarOferta(this.robotSeleccionado);
-	}*/
+	}
 	/**
 	 * Here the system must be return the user that init session
 	 */
