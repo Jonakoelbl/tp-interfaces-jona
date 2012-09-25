@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.uqbar.commons.model.ObservableUtils;
-import org.uqbar.commons.utils.TransactionalAndObservable;
+import org.uqbar.commons.utils.Observable;
 
-@TransactionalAndObservable
+@Observable
 public class Robot {
 	public static final String 
 		NOMBRE_ROBOT = "nombreRobot",

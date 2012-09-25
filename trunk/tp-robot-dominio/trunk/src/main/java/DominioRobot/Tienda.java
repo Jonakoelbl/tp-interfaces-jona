@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
-import org.uqbar.commons.utils.TransactionalAndObservable;
 
 /**
  * La Tienda se encargar de brindar accesorios al Jugador tanto en comprar un robot como en mejorarlo
- * @author jonatan
  * @author - Diego A. Turchak
  *
  */
-
-@TransactionalAndObservable
+@Observable
 public class Tienda {
 	public static final String MEJORAS = "mejoras";
 	public static final String ROBOTS_EN_VENTA = "robotsEnVenta";
@@ -81,43 +79,23 @@ public class Tienda {
 		return this.getJugadores().get(0);
 	} 
 	
-	/**
-	 * @Return if the user win
-	 * @param Robot
-	 * @param Robot
-	 * @return Boolean
-	 */
 	public Boolean ganaCompetencia(Robot unRetador, Robot unOponente){
 		return (new Random().nextInt()) <= unRetador.getPoder() / (unRetador.getPoder() + unOponente.getPoder());
 	}
 	public void setDesgasteEnRobotRetador(Robot unRetador, Robot unOponente){
 		unRetador.setNivelDeDeterioro(unRetador.getNivelDeDeterioro() + new Random().nextInt(1) * unOponente.getPoder() / (unRetador.getPoder() + unOponente.getPoder()));
 	}
-	/**
-	 * 
-	 * @param unaApuesta
-	 * @param unRetador
-	 * @param unOponente
-	 * @return Integer
-	 */
+
 	public Integer getGanaciaDeLaPelea(Integer unaApuesta, Robot unRetador, Robot unOponente){
 		return unaApuesta * (unRetador.getPoder() + unOponente.getPoder()) / unRetador.getPoder();
 	}
 	/**
 	 * @The system pay the fight's money
-	 * @param unaApuesta
-	 * @param unRetador
-	 * @param unOponente
 	 */
 	public void pagaLaGananciaDeLaApuesta(Integer unaApuesta, Robot unRetador, Robot unOponente){
 		unRetador.getPropietario().setDinero(unRetador.getPropietario().getDinero() + this.getGanaciaDeLaPelea(unaApuesta, unRetador, unOponente));
 	}
-	/**
-	 * 
-	 * @param unaApuesta
-	 * @param unRetador
-	 * @param unOponente
-	 */
+
 	public void competir(Integer unaApuesta, Robot unRetador, Robot unOponente){
 		if(this.puedeApostar(unaApuesta, unRetador.getPropietario())){
 			if(this.ganaCompetencia(unRetador, unOponente)){

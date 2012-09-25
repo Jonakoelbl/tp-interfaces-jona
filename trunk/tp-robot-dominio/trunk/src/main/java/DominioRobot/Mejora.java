@@ -1,8 +1,8 @@
 package DominioRobot;
 
-import org.uqbar.commons.utils.TransactionalAndObservable;
+import org.uqbar.commons.utils.Observable;
 
-@TransactionalAndObservable
+@Observable
 public class Mejora{
 	public static final String DESCRIPCION = "descripcion";
 	public static final String MEJORA_DE_PODER = "mejoraDePoder";
