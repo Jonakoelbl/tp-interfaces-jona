@@ -4,6 +4,7 @@
 	<groupId>something</groupId>
 	<artifactId>doSomething-dominio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>uqbar</groupId>
@@ -14,7 +15,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>uqbar</groupId>
-			<artifactId>arena</artifactId>
+			<artifactId>util-commons</artifactId>
 			<version>${arena-version}</version>
 		</dependency>
 
@@ -26,7 +27,7 @@
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
-			<version>1.9.5-rc1</version>
+			<version>1.9.0-rc1</version>
 		</dependency>
 	</dependencies>
 </project>
