@@ -70,29 +70,21 @@
           <tr>
             <th>Nombre</th>
             <th>Poder</th>
-            <th>Diseño</th>
+            <th>Resistencia</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          <c:forEach items="${sessionScope.robots}" var="robot" varStatus="status">
+				<tr>
+					<td>${status.count}</td>
+					<td><a href="detalles.jsp?nro=${status.index}">${robot.poderAtaque}</a></td>
+			    	<td>${robot.nivelDeterioro}</td>
+			    </tr>
+			</c:forEach>
         </tbody>
       </table>
     </section>
-    <a class="btn btn-info btn-large" href="#"><i class="icon-random icon-white"></i> Competir</a>
+    <a id="vender" class="btn btn-info btn-large" href="#"><i class="icon-random icon-white"></i> Vender</a>
 
     <section>
       <div class="page-header">
@@ -104,32 +96,20 @@
             <th>Dueño</th>
             <th>Nombre</th>
             <th>Poder</th>
-            <th>Diseño</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+        <c:forEach items="${sessionScope.robots}" var="robot" varStatus="status">
+				<tr>
+					<td>${status.count}</td>
+					<td><a href="detalles.jsp?nro=${status.index}">${robot.poderAtaque}</a></td>
+			    	<td>${robot.nivelDeterioro}</td>
+			    </tr>
+			</c:forEach>
         </tbody>
       </table>
     </section>
-    <a id="vender" class="btn btn-warning btn-large" href="#"><i class="icon-shopping-cart icon-white"></i> Vender</a>
+    <a id="competir" class="btn btn-warning btn-large" href="#"><i class="icon-shopping-cart icon-white"></i> Competir</a>
 
   </div><!-- /container -->
 
