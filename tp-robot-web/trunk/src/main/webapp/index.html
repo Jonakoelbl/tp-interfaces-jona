@@ -17,13 +17,20 @@
   </head>
 
   <body class="preview" data-spy="scroll" data-target=".subnav" data-offset="50">
-
-<div id="modals" style="display:none;">
-	<div class="container">
-		<section>
-		  <div class="page-header">
-			<h1>VENTA</h1>
-		  </div>
+	<div id="header" class="page-header">
+        <div class="container">
+            <div id="logo">
+            	<h1>Trabajo Pr&aacute;ctico nº2</h1>
+            </div>
+            <div id="complement-header"><h1>Turchak Diego A. - Jonatan Kölbl <br /> Trabajo Pr&aacute;ctico nº2</h1></div>
+        </div>
+    </div>
+	<div id="modals" class="modal hide fade in" style="display:none;">
+		<div class="modal-header">
+        	<a class="close" data-dismiss="modal">×</a>
+        	<h1>VENTA</h1>
+		</div>  
+        <div class="modal-body">  
 		  <table class="table table-bordered table-striped">
 			<thead>
 			  <tr>
@@ -35,20 +42,19 @@
 			  <tr>
 				<td></td>
 				<td></td>
-				<td></td>
 			  </tr>
 			  <tr>
-				<td></td>
 				<td></td>
 				<td></td>
 			  </tr>
 			</tbody>
 		  </table>
-		</section>
-		<a class="btn btn-info btn-large" href="#"><i class="icon-random icon-white"></i> Aceptar</a>
-		<a class="btn btn-info btn-large" href="#"><i class="icon-random icon-white"></i> Cancelar</a>
-	</div><!-- /container -->
-</div>
+        </div>
+        <div class="modal-footer">  
+			<a class="btn btn-info btn-large" href="#"><i class="icon-random icon-white"></i> Aceptar</a>
+			<a class="btn btn-info btn-large" href="#"><i class="icon-random icon-white"></i> Cancelar</a>
+		</div>
+	</div>
  <div class="navbar navbar-fixed-top">
    <div class="navbar-inner">
      <div class="container">
@@ -70,21 +76,29 @@
           <tr>
             <th>Nombre</th>
             <th>Poder</th>
-            <th>Resistencia</th>
+            <th>Diseño</th>
           </tr>
         </thead>
         <tbody>
-          <c:forEach items="${sessionScope.robots}" var="robot" varStatus="status">
-				<tr>
-					<td>${status.count}</td>
-					<td><a href="detalles.jsp?nro=${status.index}">${robot.poderAtaque}</a></td>
-			    	<td>${robot.nivelDeterioro}</td>
-			    </tr>
-			</c:forEach>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </section>
-    <a id="vender" class="btn btn-info btn-large" href="#"><i class="icon-random icon-white"></i> Vender</a>
+    <a id="vender" data-toggle="modal"  class="btn btn-warning btn-large" href="#"><i class="icon-shopping-cart icon-white"></i> Vender</a>
 
     <section>
       <div class="page-header">
@@ -96,20 +110,33 @@
             <th>Dueño</th>
             <th>Nombre</th>
             <th>Poder</th>
+            <th>Diseño</th>
           </tr>
         </thead>
         <tbody>
-        <c:forEach items="${sessionScope.robots}" var="robot" varStatus="status">
-				<tr>
-					<td>${status.count}</td>
-					<td><a href="detalles.jsp?nro=${status.index}">${robot.poderAtaque}</a></td>
-			    	<td>${robot.nivelDeterioro}</td>
-			    </tr>
-			</c:forEach>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </section>
-    <a id="competir" class="btn btn-warning btn-large" href="#"><i class="icon-shopping-cart icon-white"></i> Competir</a>
+    <a class="btn btn-info btn-large" href="#"><i class="icon-random icon-white"></i> Competir</a>
+    
 
   </div><!-- /container -->
 
