@@ -38,6 +38,10 @@ public class JugadorInicio {
 		return jugador;
 	}
 	
+	public void loguearJugador(String jugador, String passwords){
+		this.jugador = tienda.loguearUsuario(jugador, passwords);
+	}
+	
 	public void vender(){
 		this.tienda.comprarRobot(this.jugador, this.robotSeleccionado, this.tienda.getOferta());
 		List<Robot> robots = this.getRobots();

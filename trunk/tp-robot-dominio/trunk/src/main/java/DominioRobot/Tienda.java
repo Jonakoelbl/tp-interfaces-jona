@@ -52,6 +52,37 @@ public class Tienda {
 	public void agregarJugador(Jugador unNuevoJugador){
 		this.getJugadores().add(unNuevoJugador);		
 	}
+	
+	/**
+	 * Sistema de logueo de un usuario
+	 */
+	public Jugador loguearUsuario(String usuario, String password){
+		Jugador jugador = confirmarUsuario(usuario);
+		if(confirmarPass(jugador, password))
+			return jugador;
+		throw new RuntimeException("El password de usuario "+usuario+" es incorrecta");
+	}
+	
+	private boolean confirmarPass(Jugador usuario, String password) {
+		return usuario.confirmar(password);
+	}
+
+	private Jugador confirmarUsuario(String usuario) {
+		for (Jugador j : this.jugadores) {
+			if(j.getNombre() == usuario)
+				return j;
+		}
+		throw new RuntimeException("No existe el usuario "+usuario+" en el sistema");
+	}
+
+	/**
+	 * @Indicates if the user is login
+	 * @param Jugador
+	 * @return a boolean
+	 */
+	public Boolean isLogin(Jugador unJugador){
+		return unJugador==this.getJugadorLogueado();
+	}
 
 	protected void crearMejoras(Mejora mejora){
 		this.mejoras.add(mejora);
@@ -135,14 +166,6 @@ public class Tienda {
 		return new Robot(unNombre);
 	}
 	
-	/**
-	 * @Indicates if the user is login
-	 * @param Jugador
-	 * @return a boolean
-	 */
-	public Boolean isLogin(Jugador unJugador){
-		return unJugador==this.getJugadorLogueado();
-	}
 	/**
 	 * 
 	 * @return a List Robots from users 
