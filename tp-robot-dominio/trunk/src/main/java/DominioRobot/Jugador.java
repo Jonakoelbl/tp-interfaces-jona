@@ -100,4 +100,8 @@ public class Jugador {
 		this.dinero -= costo;		
 	}
 
+
+	public boolean confirmar(String password) {
+		return this.password == password;
+	}
 }
