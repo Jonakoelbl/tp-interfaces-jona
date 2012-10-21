@@ -1,5 +1,8 @@
 package robot.web.controller;
 
-public class VentaServlet {
+import javax.servlet.http.HttpServlet;
 
+@SuppressWarnings("serial")
+public class VentaServlet extends HttpServlet{
+	
 }
