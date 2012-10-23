@@ -46,18 +46,6 @@ public class JugadorInicio {
 		return this.tienda.getRobotContrincantes(id);
 	}
 	
-	public void vender(){
-		this.tienda.comprarRobot(this.jugador, this.robotSeleccionado, this.tienda.getOferta());
-		List<Robot> robots = this.getRobots();
-		this.setRobots(null);
-		this.setRobots(robots);
-	}
-	
-	public void mejorar(){
-		//XXX validar
-		this.tienda.venderMejora(this.jugador, this.robotSeleccionado, this.mejoraSeleccionado);
-	}
-	
 	public void comprar(){
 		this.tienda.venderleRobot(this.jugador, this.robotSeleccionado, this.tienda.getOferta());
 		List<Robot> robots = this.getRobotsEnVenta();
