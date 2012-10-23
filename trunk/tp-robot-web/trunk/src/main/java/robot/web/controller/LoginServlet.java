@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
 		String password = req.getParameter("pwd");
 		inicio.loguearJugador(username, password);
 		Jugador player = inicio.getJugador();
-		req.setAttribute("player", player);
+		req.getSession().setAttribute("player", player);
 		req.getRequestDispatcher("login.jsp").forward(req, resp);
 	}
 }
