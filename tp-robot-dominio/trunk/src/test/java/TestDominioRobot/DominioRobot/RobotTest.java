@@ -16,7 +16,7 @@ public class RobotTest {
 	Integer puntosReparacion;
 	@Before
 	public void setUp() throws Exception {
-		this.unRobot = new Robot("Diego");
+		this.unRobot = new Robot(0,"Diego");
 		this.puntosReparacion = 3;
 		this.unRobot.setNivelDeDeterioro(5);
 		this.unaMejora = mock(Mejora.class);

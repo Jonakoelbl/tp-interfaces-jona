@@ -42,6 +42,10 @@ public class JugadorInicio {
 		this.jugador = tienda.loguearUsuario(jugador, passwords);
 	}
 	
+	public Robot obtenerRobotContrincante(int id){
+		return this.tienda.getRobotContrincantes(id);
+	}
+	
 	public void vender(){
 		this.tienda.comprarRobot(this.jugador, this.robotSeleccionado, this.tienda.getOferta());
 		List<Robot> robots = this.getRobots();
