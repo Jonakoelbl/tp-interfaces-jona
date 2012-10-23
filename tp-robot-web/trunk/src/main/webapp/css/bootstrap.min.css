@@ -3521,3 +3521,10 @@ a.thumbnail:hover {
 #complement-header h1{
 	font-size:16px !important;
 }
+
+.vsrobots{
+	background: url("../img/vs.jpg") no-repeat !important;
+	text-indent: -9999px;
+	height: 309px;
+	width: 500px;
+}

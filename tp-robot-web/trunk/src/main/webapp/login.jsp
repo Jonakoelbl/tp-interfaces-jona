@@ -78,14 +78,17 @@
 			<div class="container">
 			<div class="row">
 				<div class="span8">
-					<form class="form-horizontal" id="registerHere" method='post' action=''>
+					<c:if test="${requestScope.player!= null}" >
+							${player.nombre}
+					</c:if>
+					<form class="form-horizontal" id="registerHere" method='post' action='login.jsp'>
 						<fieldset>
 							<legend>Login</legend>
 							<div class="control-group">
 								<label class="control-label" for="input01">Username</label>
 								<div class="controls">
 									<span class="add-on"><i class="icon-user"></i></span>
-									<input type="text" class="input-xlarge" id="user_name" name="user_name" rel="popover" data-content="Ingresa tu nombre de usuario." >
+									<input type="text" value="" class="input-xlarge" id="user_name" name="user_name" rel="popover" data-content="Ingresa tu nombre de usuario." >
 								</div>
 							</div>
 					
@@ -93,7 +96,7 @@
 								<label class="control-label" for="input01">Password</label>
 								<div class="controls">
 									<span class="add-on"><i class="icon-lock"></i></span>
-									<input type="password" class="input-xlarge" id="pwd" name="pwd" rel="popover" data-content="Recuerda que por tu seguridad, tienes solo 5 intentos erroneos de login..." >
+									<input type="password" value=""  class="input-xlarge" id="pwd" name="pwd" rel="popover" data-content="Recuerda que por tu seguridad, tienes solo 5 intentos erroneos de login..." >
 								</div>
 							</div>			
 							<div class="control-group">
