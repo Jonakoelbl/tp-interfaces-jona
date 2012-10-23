@@ -24,6 +24,7 @@ public class Tienda {
 	private List<Jugador> jugadores = new ArrayList<Jugador>();
 	private List<Robot> robotsEnCompetencia = new ArrayList<Robot>();
 	private Integer oferta;
+	private int id = 0;
 	
 	public Tienda() {
 		
@@ -31,10 +32,10 @@ public class Tienda {
 		this.crearMejoras(new Mejora("Mochila voladora de propulsion", 4, 96));
 		this.crearMejoras(new Mejora("Lanza-cohetes teledirigidos", 13, 156));
 		
-		this.agregarRobots(new Robot("RBT1"));
-		this.agregarRobots(new Robot("RBT2"));
-		this.agregarRobots(new Robot("RBT3"));
-		this.agregarRobots(new Robot("RBT4"));
+		this.agregarRobots(new Robot(0,"RBT1"));
+		this.agregarRobots(new Robot(0,"RBT2"));
+		this.agregarRobots(new Robot(0,"RBT3"));
+		this.agregarRobots(new Robot(0,"RBT4"));
 		
 		this.creaNuevoUsuario("Diego", "vengoaganar");
 		this.creaNuevoUsuario("Jona", "vengoapelear");
@@ -75,6 +76,14 @@ public class Tienda {
 		throw new RuntimeException("No existe el usuario "+usuario+" en el sistema");
 	}
 
+	public Robot getRobotContrincantes(int id){
+		for (Robot robot : this.robotsEnCompetencia) {
+			if(robot.getId() == id)
+				return robot;
+		}
+		
+		throw new RuntimeException("No existe el robot con la id "+id);
+	}
 	/**
 	 * @Indicates if the user is login
 	 * @param Jugador
@@ -102,7 +111,7 @@ public class Tienda {
 			robot.fuisteVendido();
 			this.robotsEnVenta.add(robot);
 		}
-	}
+	}	
 	/**
 	 * @return the user that init session
 	 */
@@ -157,19 +166,10 @@ public class Tienda {
 		this.agregarJugador(unNuevoJugador);
 	}
 	
-	/**
-	 * 
-	 * @param unRobot
-	 * @return a Robot
-	 */
 	public Robot creaUnNuevoRobot(String unNombre){
-		return new Robot(unNombre);
+		return new Robot(this.id++,unNombre);
 	}
-	
-	/**
-	 * 
-	 * @return a List Robots from users 
-	 */
+
 	public List<Robot> getRobotsDeJugadores(){
 		List<Robot> lista = new ArrayList<Robot> ();
 		for(Jugador j : this.getJugadores()){
@@ -179,10 +179,6 @@ public class Tienda {
 		}
 		return lista;
 	}
-	/**
-	 * 
-	 * @return a List Robots for competition join the system's robots and the users robots
-	 */
 	
 	public List<Robot> getAllRobotsForCompetition(){
 		this.robotsEnCompetencia = new ArrayList<Robot>();
@@ -235,7 +231,6 @@ public class Tienda {
 	protected Boolean aceptarOfertaDeJugador(Integer oferta, Robot unRobot){
 		return new Random().nextDouble() <= 0.9 * Math.pow((oferta / unRobot.getPrecio()),2.0);
 	}
-	
 	
 	protected boolean aceptaOferta(Integer oferta, Robot robot){
 		return (robot.getPrecio() * 0.1 >= oferta) || aceptarOfertaPrecioBase(oferta, robot.getPrecio()) ||

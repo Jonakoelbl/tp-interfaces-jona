@@ -25,8 +25,10 @@ public class Robot {
 	private Integer poder ;
 	private Integer precio;
 	private Integer oferta;
+	private final int id;
 	
-	public Robot(String nombre) {
+	public Robot(int id, String nombre) {
+		this.id = id;
 		this.nombreRobot = nombre;
 		this.poder = new Random().nextInt(20);
 		this.poderEfectivo = poder * (100 - this.nivelDeDeterioro) / 100;
@@ -106,5 +108,7 @@ public class Robot {
 		return oferta;
 	}
 
-
+	public int getId() {
+		return this.id;
+	}
 }
