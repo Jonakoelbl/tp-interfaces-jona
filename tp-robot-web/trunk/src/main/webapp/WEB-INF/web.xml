@@ -3,11 +3,11 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Web Robot</display-name>
-  <servlet>
-	<servlet-name>LoginServlet</servlet-name>
-	<servlet-class>robot.web.controller.LoginServlet</servlet-class>
-</servlet>
+	<display-name>Archetype Web Robot</display-name>
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>robot.web.controller.LoginServlet</servlet-class>
+	</servlet>
 	<servlet>
 		<servlet-name>indexServlet</servlet-name>
 		<servlet-class>robot.web.controller.IndexServlet</servlet-class>
@@ -15,10 +15,30 @@
 	<servlet>
 		<servlet-name>ventaServlet</servlet-name>
 		<servlet-class>robot.web.controller.VentaServlet</servlet-class>
-	</servlet>	
+	</servlet>
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>ErrorServlet</servlet-name> -->
+<!-- 		<servlet-class>robot.web.controller.ErrorServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<error-page> -->
+<!-- 		<exception-type>java.lang.Throwable</exception-type> -->
+<!-- 		<location>/error</location> -->
+<!-- 	</error-page> -->
+	<servlet>
+		<servlet-name>CompetirServlet</servlet-name>
+		<servlet-class>robot.web.controller.CompetirServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/login.jsp</url-pattern>
+		<url-pattern>/loginResponse</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CompetirServlet</servlet-name>
+		<url-pattern>/competir</url-pattern>
 	</servlet-mapping>
 	
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+		<taglib-location>c.tld</taglib-location>
+	</taglib>
 </web-app>

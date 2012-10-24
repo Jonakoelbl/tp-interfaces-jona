@@ -78,10 +78,7 @@
 			<div class="container">
 			<div class="row">
 				<div class="span8">
-					<c:if test="${requestScope.player!= null}" >
-							${player.nombre}
-					</c:if>
-					<form class="form-horizontal" id="registerHere" method='post' action='login.jsp'>
+					<form class="form-horizontal" id="registerHere" method='post' action='loginResponse'>
 						<fieldset>
 							<legend>Login</legend>
 							<div class="control-group">

@@ -1,8 +1,11 @@
+<%@ page isELIgnored ="false" pageEncoding="UTF-8" %> 
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>Diego A. Turchak - Jonatan Kölbl</title>
+    <title>Diego A. Turchak - Jonatan K&ouml;lbl</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -20,17 +23,18 @@
 	<div id="header" class="page-header">
         <div class="container">
             <div id="logo">
-            	<h1>Trabajo Pr&aacute;ctico nº2</h1>
+            	<h1>Trabajo Pr&aacute;ctico nÂº2</h1>
             </div>
-            <div id="complement-header"><h1>Turchak Diego A. - Jonatan Kölbl <br /> Trabajo Pr&aacute;ctico nº2</h1></div>
+            <div id="complement-header"><h1>Turchak Diego A. - Jonatan K&ouml;lbl <br /> Trabajo Pr&aacute;ctico nn&deg;2</h1></div>
         </div>
     </div>
 	<div id="modals" class="modal hide fade in" style="display:none;">
 		<div class="modal-header">
-        	<a class="close" data-dismiss="modal">×</a>
+        	<a class="close" data-dismiss="modal">x</a>
         	<h1>VENTA</h1>
 		</div>  
-        <div class="modal-body">  
+        <div class="modal-body"> 
+        	<div id="isRobotSale" class=""></div> 
 		  <table class="table table-bordered table-striped">
 			<thead>
 			  <tr>
@@ -52,13 +56,13 @@
         </div>
         <div class="modal-footer">  
 			<a class="btn btn-info btn-large" href="#"><i class="icon-random icon-white"></i> Aceptar</a>
-			<a class="btn btn-info btn-large closemodal" href="#"><i class="icon-random icon-white"></i> Cancelar</a>
+			<a id="confirmarVenta" class="btn btn-info btn-large closemodal" href="#"><i class="icon-random icon-white"></i> Cancelar</a>
 		</div>
 	</div>
 	
 	<div id="modals-fight" class="modal hide fade in" style="display:none;">
 		<div class="modal-header">
-        	<a class="close" data-dismiss="modal">×</a>
+        	<a class="close" data-dismiss="modal">x</a>
         	<h1></h1>
 		</div>  
         <div class="modal-body">
@@ -71,7 +75,7 @@
 	</div>
 	<div id="modals-message" class="modal hide fade in" style="display:none;">
 		<div class="modal-header">
-        	<a class="close" data-dismiss="modal">×</a>
+        	<a class="close" data-dismiss="modal">x</a>
         	<h1>Tienes un mensaje del Sistema.</h1>
 		</div>  
         <div class="modal-body">
@@ -92,7 +96,7 @@
 <div class="navbar navbar-fixed-top">
    <div class="navbar-inner">
      <div class="container">
-       <a class="brand" href="../">Diego A. Turchak- Jonatan Kölbl</a>
+       <a class="brand" href="../">Diego A. Turchak- Jonatan K&ouml;lbl</a>
        <div class="nav-collapse" id="main-menu">
        </div>
      </div>
@@ -102,80 +106,68 @@
   <div class="container">
 	<section class="micuenta">
 		<div class="page-header">
-			<h1>Diego A Turchak</h1>
+			<h1>${player.nombre}</h1>
 		</div>
-		<div class="saldo"><strong>Saldo</strong> : $&nbsp; </div>
+		<div class="saldo"><strong>Saldo</strong> : $&nbsp; ${player.dinero}</div>
 	</section>
     <section class="misrobots">
       <div class="page-header">
         <h1>MIS ROBOTS</h1>
       </div>
 	  <div class="selectionRobot"></div>
-		<table class="table table-bordered table-striped">
-			<thead>
-			  <tr>
-				<th>Nombre</th>
-				<th>Poder</th>
-				<th>Diseño</th>
-			  </tr>
-			</thead>
-			<tbody>
-				<tr id="33">
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr id="34">
-					<td>Diego</td>
-					<td>98</td>
-					<td>SuperSlow</td>
-				</tr>
-				<tr id="35">
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tbody>
-		</table>
-    </section>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Poder</th>
+						<th>Nivel De Deterioro</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:if test="${player != null}">
+						<h2>Respuestas:</h2>
+						<c:forEach items="${player.misRobots}" var="robot"
+							varStatus="status">
+							<tr id="${robot.id}" class="${status.count}">
+								<td>${robot.nombreRobot}</td>
+								<td>${robot.poder}</td>
+								<td>${robot.nivelDeDeterioro}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</tbody>
+			</table>
+		</section>
     <a id="vender" data-toggle="modal"  class="btn btn-warning btn-large" href="#"><i class="icon-shopping-cart icon-white"></i> Vender</a>
 
     <section class="contrincantes">
       <div class="page-header">
-        <h1>CONTRINCANTES</h1>
+        <h1>Contrincantes</h1>
       </div>
 	  <div class="selectionRobot"></div>
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>Dueño</th>
-            <th>Nombre</th>
-            <th>Poder</th>
-            <th>Diseño</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Poder</th>
+						<th>Nivel De Deterioro</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:if test="${player != null}">
+						<h2>Respuestas:</h2>
+						<c:forEach items="${player.misContrincantes}" var="robot"
+							varStatus="status">
+							<tr id="${robot.id}">
+								<td>${robot.nombreRobot}</td>
+								<td>${robot.poder}</td>
+								<td>${robot.nivelDeDeterioro}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</tbody>
+			</table>
+		</section>
     <a class="btn btn-info btn-large" id="competir" href="#"><i class="icon-random icon-white"></i> Competir</a>
     
 
@@ -196,11 +188,29 @@
 		$("#vender").click(function(e){
 			if(choiceRobotForSale()){
 				$("#modals").modal();
+				$("#isRobotSale").attr("class",$(".misrobots tr.selectedRobot").attr("id"));
 			}
 			else{
-				populateMessage("NO has elegido ningún robot para la venta!");
+				populateMessage("NO has elegido ning&uacute;n robot para la venta!");
 			}
 		})
+		$("#comprar").click(function(e){
+			if(userChoiceForBuy()){
+				$("#").modal();
+			}
+		})
+		
+		$("#confirmarVenta").click(function(e){
+			$.ajax({
+				type : "POST",
+				url : "venta",
+				data : "id="+$("#isRobotSale").attr("class"),
+				success : function(){
+					populateMessage("NO has elegido ning&uacute;n robot para la venta!");
+				}
+			});	
+		})
+		
 		$("#competir").click(function(e){
 			if(userChoiceRobots()){
 				$("#modals-fight").modal();
@@ -218,6 +228,9 @@
 		function choiceRobotForSale(){
 			return $(".misrobots tr.selectedRobot").length>0;
 		}
+		function choiceRobotForBuy(){
+			return $(".");
+		}
 		function userChoiceRobots(){
 			var puedeCompetir = true;
 			if(!($(".contrincantes tr.selectedRobot").length>0&&$(".misrobots tr.selectedRobot").length>0)){
@@ -228,12 +241,15 @@
 		function sendDataForCompetition(){
 			$.ajax({
 				type : "POST",
-				url : "someservlet",
+				url : "competition",
 				data : "usuario=42&contrincante="+$(".contrincantes tr.selectedRobot").attr("id")+"&mirobot="+$(".misrobots tr.selectedRobot").attr("id"),
 				success : function(){
 					populateMessage("La respuesta it's comming!!!");
 				}
 			});
+		}
+		function loadRobotForSale(){
+				
 		}
 		
 		function populateMessage(aMessage){
