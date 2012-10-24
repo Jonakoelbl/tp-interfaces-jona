@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
@@ -37,8 +36,8 @@ public class Tienda {
 		this.agregarRobots(new Robot(0,"RBT3"));
 		this.agregarRobots(new Robot(0,"RBT4"));
 		
-		this.creaNuevoUsuario("Diego", "vengoaganar");
-		this.creaNuevoUsuario("Jona", "vengoapelear");
+		this.creaNuevoUsuario("Diego", "1234");
+		this.creaNuevoUsuario("Jona", "1234");
 		this.creaNuevoUsuario("Tinogasta", "vengoacompetir");
 		this.creaNuevoUsuario("LaFalda", "vengoaconseguirrobots");
 		this.creaNuevoUsuario("Circense", "nosealoquevengo");
@@ -70,7 +69,7 @@ public class Tienda {
 
 	private Jugador confirmarUsuario(String usuario) {
 		for (Jugador j : this.jugadores) {
-			if(j.getNombre() == usuario)
+			if(j.getNombre().equals(usuario))
 				return j;
 		}
 		throw new RuntimeException("No existe el usuario "+usuario+" en el sistema");

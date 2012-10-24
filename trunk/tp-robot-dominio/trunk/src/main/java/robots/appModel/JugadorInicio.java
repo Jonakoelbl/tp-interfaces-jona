@@ -34,6 +34,10 @@ public class JugadorInicio {
 		this.jugador = jugador;
 	}
 	
+	public JugadorInicio() {
+		super();
+	}
+	
 	public Jugador getJugador() {
 		return jugador;
 	}
@@ -42,8 +46,15 @@ public class JugadorInicio {
 		this.jugador = tienda.loguearUsuario(jugador, passwords);
 	}
 	
+	public Robot obtenerRobotDelJugador(int idRobot){
+		return this.jugador.getMiRobot(idRobot);
+	}
+	
 	public Robot obtenerRobotContrincante(int id){
 		return this.tienda.getRobotContrincantes(id);
+	}
+	public void vender(Robot robotAVender){
+		this.tienda.comprarRobot(jugador, robotAVender, robotAVender.getPrecio());
 	}
 	
 	public void comprar(){

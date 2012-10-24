@@ -13,6 +13,7 @@ public class Jugador {
 	private String password;
 	private List<Robot> misRobots = new Vector<Robot>();
 	private Integer dinero = 3000;
+	private List<Robot> misContrincantes = new Vector<Robot>();
 	/**
 	public Jugador(String unNombre) {
 		this.nombre = unNombre;
@@ -37,6 +38,7 @@ public class Jugador {
 		unRobot.setPropietario(this);
 		unRobot.setNivelDeDeterioro(50);
 		this.misRobots.add(unRobot);
+		this.misContrincantes = this.getMisContrincantes();
 	}
 	
 	public void vender(Robot robot, Integer oferta){
@@ -102,6 +104,23 @@ public class Jugador {
 
 
 	public boolean confirmar(String password) {
-		return this.password == password;
+		return this.password.equals(password);
+	}
+
+	public void setMisContrincantes(List<Robot> misContrincantes) {
+		this.misContrincantes = misContrincantes;
+	}
+
+	public List<Robot> getMisContrincantes() {
+		return misContrincantes;
+	}
+
+	public Robot getMiRobot(int id) {
+		Robot r = null;
+		for (Robot robot : this.misRobots) {
+			if(r.getId() == id)
+				r = robot;
+		}
+		return r;
 	}
 }
