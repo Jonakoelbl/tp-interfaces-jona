@@ -16,14 +16,11 @@ import robots.appModel.JugadorInicio;
 
 @SuppressWarnings("serial")
 public class IndexServlet extends HttpServlet{
-	JugadorInicio taller = new JugadorInicio(null);
+	JugadorInicio taller = new JugadorInicio();
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String player = req.getParameter("player");
-		Collection<Robot> robotsDelJugador = null; //TODO:se supone que tengo que obtener el jugador
-		Collection<Robot> robotsContrincantes = taller.getTienda().getAllRobotsForCompetition();
-		req.getSession().setAttribute("robotsContrincantes",robotsContrincantes);
-		req.getSession().setAttribute("robotsDelJugador", robotsDelJugador);
+		Collection<Robot> robotsParaLaVentas = taller.getTienda().getRobotsEnVenta();
+		req.getSession().setAttribute("robotsContrincantes",robotsParaLaVentas);
 	}
 }
