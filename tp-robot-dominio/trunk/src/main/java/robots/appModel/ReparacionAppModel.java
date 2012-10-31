@@ -71,4 +71,9 @@ public class ReparacionAppModel {
 	public void setCosto(int costo) {
 		this.costo = costo;
 	}
+
+	public void calcularCosto() {
+		// TODO Auto-generated method stub
+		
+	}
 }
