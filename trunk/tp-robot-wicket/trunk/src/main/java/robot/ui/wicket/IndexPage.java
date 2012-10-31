@@ -12,7 +12,9 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import DominioRobot.Jugador;
 import DominioRobot.Robot;
+import DominioRobot.Tienda;
 
 import robots.appModel.IndexJugador;
 
@@ -21,25 +23,32 @@ public class IndexPage extends WebPage{
 	private static final long serialVersionUID = 1l;
 	
 	private final IndexJugador indexJugador;
+	private final Jugador player;
 	
 	public IndexPage() {
 		this.indexJugador = new IndexJugador();
+		this.player = this.indexJugador.getJugador();
 		Form<IndexJugador> indexJugador = new Form<IndexJugador>("IndexJugadorForm",new CompoundPropertyModel<IndexJugador>(this.indexJugador));
 		this.createButtonComprar(indexJugador);
 		this.createTableRobotPlayer(indexJugador);
 		this.createTableOpponentPlayer(indexJugador);
+		this.reloadPage();
 	}
 	
+	public void reloadPage() {
+		//TODO: actualizar la lista de los robots del jugador...
+	}
 	////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////Creacion de tabla de contrincantes//////////////////////////////////
+	////////////////////Vista de la Tabla de contrincantes//////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////
 	private void createTableOpponentPlayer(Form<IndexJugador> parent) {
-		parent.add(new PropertyListView<Robot>("Contrincantes"){
+		parent.add(new PropertyListView<Robot>("robotsDeLosContrincantes"){
 			@Override
 			protected void populateItem(ListItem<Robot> item) {
 				item.add(new Label("Propietario"));
-				item.add(new Label("Nombre del Robot"));
-				item.add(new Label("Nivel de deterioro"));
+				item.add(new Label("NombreDelRobot"));
+				item.add(new Label("Poder"));
+				item.add(new Label("NivelDeDeterioro"));
 			}
 		});
 	}
@@ -49,13 +58,13 @@ public class IndexPage extends WebPage{
 	/////////////////////////////////////////////////////////////////////////////////////////
 	
 	private void createTableRobotPlayer(Form<IndexJugador> parent) {
-		parent.add(new PropertyListView<Robot>("misRobots") {
+		parent.add(new PropertyListView<Robot>("robotsDelJugador") {
 
 			@Override
 			protected void populateItem(ListItem<Robot> item) {
-				item.add(new Label("Nombre del Robot"));
-				item.add(new Label("Poder de Ataque"));
-				item.add(new Label("Nivel de deterioro"));
+				item.add(new Label("NombreDelRobot"));
+				item.add(new Label("Poder"));
+				item.add(new Label("NivelDeDeterioro"));
 				
 				item.add(createButtonReparar(item.getModelObject()));
 				item.add(createButtonVender(item.getModelObject()));
@@ -74,7 +83,7 @@ public class IndexPage extends WebPage{
 	}
 	
 	protected void goToButtonMejorar(Robot robotAMejorar){
-		MejoraPage mejoraPage = new MejoraPage(robotAMejorar,this);
+		MejoraPage mejoraPage = new MejoraPage(this.indexJugador,robotAMejorar, this);
 		this.setResponsePage(mejoraPage);
 	}
 
@@ -102,7 +111,7 @@ public class IndexPage extends WebPage{
 	}
 
 	protected void goToButtonReparar(Robot robotAReparar) {
-		RepararPage repararPage = new RepararPage(robotAReparar, this);
+		RepararPage repararPage = new RepararPage(robotAReparar,player, this);
 		this.setResponsePage(repararPage);
 	}
 
@@ -119,4 +128,5 @@ public class IndexPage extends WebPage{
 		ComprarPage comprarPage = new ComprarPage(this);
 		this.setResponsePage(comprarPage);
 	}
+
 }
