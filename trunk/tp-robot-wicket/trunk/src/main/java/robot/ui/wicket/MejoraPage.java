@@ -40,7 +40,12 @@ public class MejoraPage extends WebPage{
 			}			
 		});
 	}
-
+	
+	protected void backMainPage(){
+		mainPage.reloadPage();
+		this.setResponsePage(mainPage);
+	}
+	
 	protected void createFieldOfText(Form<MejoraAppModel> mejoraForm) {
 		mejoraForm.add(new Label("poder"));
 	}
