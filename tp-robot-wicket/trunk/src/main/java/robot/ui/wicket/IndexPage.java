@@ -97,7 +97,7 @@ public class IndexPage extends WebPage{
 	}
 
 	protected void goToButtonVender(Robot robotAVender) {
-		VenderPage venderPage = new VenderPage(robotAVender, this);
+		VenderPage venderPage = new VenderPage(this.indexJugador,robotAVender, this);
 		this.setResponsePage(venderPage);
 	}
 
