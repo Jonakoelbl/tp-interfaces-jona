@@ -29,6 +29,12 @@ public class VentaAppModel {
 		this.tienda = tienda;
 	}
 	
+	public VentaAppModel(Jugador jugador2, Robot robotAVender2, Tienda tienda2) {
+		this.jugador = jugador2;
+		this.robotAVender = robotAVender2;
+		this.tienda = tienda2;
+	}
+
 	public void vender(){
 		this.tienda.comprarRobot(this.jugador, this.robotAVender, this.ofertaDelSistema);
 		List<Robot> robots = this.model.getRobots();
