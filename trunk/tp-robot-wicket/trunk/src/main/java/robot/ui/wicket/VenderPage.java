@@ -7,7 +7,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.CompoundPropertyModel;
 
 import robots.appModel.IndexJugador;
-import robots.appModel.ReparacionAppModel;
 import robots.appModel.VentaAppModel;
 
 import DominioRobot.Robot;
@@ -30,12 +29,14 @@ public class VenderPage extends WebPage{
 
 	protected void createOnSummit(Form<VentaAppModel> tiendaForm) {
 		tiendaForm.add(new Button("Aceptar"){
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				VenderPage.this.tiendaDeVenta.vender();
 			}
 		});
 		tiendaForm.add(new Button("Cancelar"){
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				VenderPage.this.backMainPage();

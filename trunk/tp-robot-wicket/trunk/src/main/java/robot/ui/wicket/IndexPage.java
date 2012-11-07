@@ -4,17 +4,13 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import DominioRobot.Jugador;
 import DominioRobot.Robot;
-import DominioRobot.Tienda;
 
 import robots.appModel.IndexJugador;
 
@@ -43,6 +39,7 @@ public class IndexPage extends WebPage{
 	////////////////////////////////////////////////////////////////////////////////////////
 	private void createTableOpponentPlayer(Form<IndexJugador> parent) {
 		parent.add(new PropertyListView<Robot>("robotsDeLosContrincantes"){
+			private static final long serialVersionUID = 1L;
 			@Override
 			protected void populateItem(ListItem<Robot> item) {
 				item.add(new Label("Propietario"));
@@ -59,7 +56,7 @@ public class IndexPage extends WebPage{
 	
 	private void createTableRobotPlayer(Form<IndexJugador> parent) {
 		parent.add(new PropertyListView<Robot>("robotsDelJugador") {
-
+			private static final long serialVersionUID = 1L;
 			@Override
 			protected void populateItem(ListItem<Robot> item) {
 				item.add(new Label("NombreDelRobot"));
@@ -69,12 +66,14 @@ public class IndexPage extends WebPage{
 				item.add(createButtonReparar(item.getModelObject()));
 				item.add(createButtonVender(item.getModelObject()));
 				item.add(createButtonMejora(item.getModelObject()));
+				//competir
 			}
 		});
 	}
 	
 	protected Component createButtonMejora(final Robot robot) {
 		return new Button("Mejorar") {
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				IndexPage.this.goToButtonMejorar(robot);
@@ -89,6 +88,7 @@ public class IndexPage extends WebPage{
 
 	protected Component createButtonVender(final Robot robot) {
 		return new Button("Reparar") {
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				IndexPage.this.goToButtonVender(robot);
@@ -103,6 +103,7 @@ public class IndexPage extends WebPage{
 
 	protected Component createButtonReparar(final Robot robot){
 		return new Button("Reparar") {
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				IndexPage.this.goToButtonReparar(robot);
@@ -117,6 +118,7 @@ public class IndexPage extends WebPage{
 
 	protected void createButtonComprar(Form<IndexJugador> form){
 		form.add(new Button("Comprar") {
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				IndexPage.this.goToButtonComprar();
@@ -125,7 +127,7 @@ public class IndexPage extends WebPage{
 	}
 
 	protected void goToButtonComprar() {
-		ComprarPage comprarPage = new ComprarPage(this);
+		ComprarPage comprarPage = new ComprarPage(this, this.indexJugador);
 		this.setResponsePage(comprarPage);
 	}
 
