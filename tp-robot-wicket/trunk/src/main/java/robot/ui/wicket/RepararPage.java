@@ -30,6 +30,7 @@ public class RepararPage extends WebPage{
 	
 	private void createButtonAction(Form<ReparacionAppModel> robotForm) {
 		robotForm.add(new Button("calcular"){
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				//TODO: refinir el costo...
@@ -37,6 +38,7 @@ public class RepararPage extends WebPage{
 			}
 		});
 		robotForm.add(new Button("Reparar"){
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				RepararPage.this.tiendaDeReparacion.validar();
@@ -45,6 +47,7 @@ public class RepararPage extends WebPage{
 			}
 		});
 		robotForm.add(new Button("Cancelar"){
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				RepararPage.this.backMainPage();
