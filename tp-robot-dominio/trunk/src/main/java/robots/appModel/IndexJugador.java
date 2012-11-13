@@ -12,6 +12,7 @@ public class IndexJugador {
 
 	public IndexJugador() {
 		this.tienda = new Tienda();
+		this.jugador = new Jugador("Pepe", "asd", new Robot(0, "Arturito"));
 	}
 	
 	public List<Robot> getRobotsDelJugador(){

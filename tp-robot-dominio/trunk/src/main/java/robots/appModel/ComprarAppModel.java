@@ -17,7 +17,6 @@ public class ComprarAppModel {
 	public ComprarAppModel(Jugador jugador, Tienda tienda) {
 		this.jugador = jugador;
 		this.tienda = tienda;
-		//this.realizarOferta(robotAComprar);
 	}
 	
 	public void realizarOferta() {
