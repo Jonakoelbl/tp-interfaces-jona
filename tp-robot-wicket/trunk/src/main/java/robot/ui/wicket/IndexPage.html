@@ -6,30 +6,50 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script src="js/bootstrap_modal.js"></script> 
 </head>
-<body>
-	<form wicket:id="IndexJugadorForm">
-		<input type="submit" wicket:id="Comprar" value="Comprar" />
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Poder</th>
-					<th>Nivel De Deterioro</th>
+<body class="preview" data-spy="scroll" data-target=".subnav" data-offset="50">
+	<div id="header" class="page-header">
+        <div class="container">
+            <div id="logo">
+            	<h1>Trabajo Pr&aacute;ctico nº2</h1>
+            </div>
+            <div id="complement-header"><h1>Turchak Diego A. - Jonatan K&ouml;lbl <br /> Trabajo Pr&aacute;ctico nn&deg;2</h1></div>
+        </div>
+    </div>
+	<div class="navbar navbar-fixed-top">
+	   <div class="navbar-inner">
+	     <div class="container">
+	       <a class="brand" href="../">Diego A. Turchak- Jonatan K&ouml;lbl</a>
+	       <div class="nav-collapse" id="main-menu">
+	       </div>
+	     </div>
+	   </div>
+	  </div>
+	
+	  <div class="container">
+		<form wicket:id="IndexJugadorForm">
+			<input type="submit" wicket:id="Comprar" value="Comprar" />
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Poder</th>
+						<th>Nivel De Deterioro</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr wicket:id="robotsDelJugador">
+					<td><span wicket:id="nombreRobot"></span></td>
+					<td><span wicket:id="poder"></span></td>
+					<td><span wicket:id="nivelDeDeterioro"></span></td>
+					<td><input wicket:id="Vender" type="submit" name="Vender" value="Vender" /></td>
+					<td><input wicket:id="Reparar" type="submit" name="Reparar" value="Reparar" /></td>
+					<td><input wicket:id="Mejorar" type="submit" name="Mejorar" value="Mejorar" /></td>
+					<td><input wicket:id="Competir" type="submit" name="Competir" value="Competir" /></td>
 				</tr>
-			</thead>
-			<tbody>
-			<tr wicket:id="robotsDelJugador">
-				<td><span wicket:id="nombreRobot"></span></td>
-				<td><span wicket:id="poder"></span></td>
-				<td><span wicket:id="nivelDeDeterioro"></span></td>
-				<td><input wicket:id="Vender" type="submit" name="Vender" value="Vender" /></td>
-				<td><input wicket:id="Reparar" type="submit" name="Reparar" value="Reparar" /></td>
-				<td><input wicket:id="Mejorar" type="submit" name="Mejorar" value="Mejorar" /></td>
-				<td><input wicket:id="Competir" type="submit" name="Competir" value="Competir" /></td>
-			</tr>
-			</tbody>
-		</table>
-
-	</form>
+				</tbody>
+			</table>
+	
+		</form>
+	</div>
 </body>
 </html>
