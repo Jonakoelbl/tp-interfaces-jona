@@ -45,7 +45,6 @@ public class VenderPage extends WebPage{
 	}
 
 	protected void backMainPage() {
-		this.mainPage.reloadPage();
 		this.setResponsePage(mainPage);
 	}
 

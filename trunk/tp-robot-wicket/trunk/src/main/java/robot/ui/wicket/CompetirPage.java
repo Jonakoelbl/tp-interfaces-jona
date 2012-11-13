@@ -39,7 +39,6 @@ public class CompetirPage extends WebPage {
 	}
 	
 	protected void backToPage(){
-		this.mainPage.reloadPage();
 		this.setResponsePage(mainPage);
 	}
 	

@@ -58,7 +58,6 @@ public class RepararPage extends WebPage{
 	}
 
 	protected void backMainPage() {
-		mainPage.reloadPage();
 		this.setResponsePage(mainPage);
 	}
 

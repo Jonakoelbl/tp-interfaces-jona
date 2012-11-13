@@ -28,11 +28,6 @@ public class IndexPage extends WebPage{
 		this.createButtonComprar(indexJugador);
 		this.createTableRobotPlayer(indexJugador);
 		this.add(indexJugador);
-		this.reloadPage();
-	}
-	
-	public void reloadPage() {
-		//TODO: actualizar la lista de los robots del jugador...
 	}
 	
 	private void createTableRobotPlayer(Form<IndexJugador> parent) {
