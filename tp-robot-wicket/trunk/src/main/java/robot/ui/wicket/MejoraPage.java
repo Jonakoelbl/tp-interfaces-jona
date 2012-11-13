@@ -27,10 +27,10 @@ public class MejoraPage extends WebPage{
 	public MejoraPage(IndexJugador dataBase,Robot robotAMejorar,IndexPage mainPage) {
 		this.mainPage = mainPage;
 		this.tiendaDeMejora = new MejoraAppModel(dataBase.getJugador(),robotAMejorar, dataBase.getTienda());
-		Form<MejoraAppModel> mejoraForm = new Form<MejoraAppModel>("mejorarRobotForm",new CompoundPropertyModel<MejoraAppModel>(this.tiendaDeMejora));
-		this.createFieldOfText(mejoraForm);
+		Form<MejoraAppModel> mejoraForm = new Form<MejoraAppModel>("mejoraForm",new CompoundPropertyModel<MejoraAppModel>(this.tiendaDeMejora));
 		this.createTableMejora(mejoraForm);
-		this.createButton(mejoraForm);
+		//this.createFieldOfText(mejoraForm);
+		//this.createButton(mejoraForm);
 		this.add(mejoraForm);
 	}
 
@@ -57,7 +57,7 @@ public class MejoraPage extends WebPage{
 		RadioGroup<Mejora> group =new RadioGroup<Mejora>("mejoraSeleccionado");
 		mejoraForm.add(group);
 
-		ListView<Mejora> mejoras=new ListView<Mejora>("mejoras", this.tiendaDeMejora.getMejorasEnVenta()) {
+		ListView<Mejora> mejoras=new ListView<Mejora>("mejorasEnVenta", this.tiendaDeMejora.getMejorasEnVenta()) {
 			private static final long serialVersionUID = 1L;
 		    protected void populateItem(ListItem<Mejora> item) {
 		      item.add(new Radio<Mejora>("mejora", item.getModel()));
