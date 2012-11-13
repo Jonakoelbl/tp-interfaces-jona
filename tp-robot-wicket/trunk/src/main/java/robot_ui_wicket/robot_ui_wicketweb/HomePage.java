@@ -12,18 +12,18 @@ public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
 
     public HomePage(final PageParameters parameters) {
-	super(parameters);
-
-	add(new Label("version", getApplication().getFrameworkSettings().getVersion()));
+		super(parameters);
 	
-	Link<String> comprar = new Link<String>("compra") {
-		private static final long serialVersionUID = 1L;
-		@Override
-		public void onClick() {
-			//setResponsePage(new ComprarPage(HomePage.this, new JugadorInicio()));
-		}
-	};
-	add(comprar);
+		add(new Label("version", getApplication().getFrameworkSettings().getVersion()));
+		
+		Link<String> comprar = new Link<String>("compra") {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onClick() {
+				//setResponsePage(new ComprarPage(HomePage.this, new JugadorInicio()));
+			}
+		};
+		add(comprar);
 
     }
 }
