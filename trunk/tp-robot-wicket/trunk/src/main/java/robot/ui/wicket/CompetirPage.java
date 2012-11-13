@@ -34,7 +34,6 @@ public class CompetirPage extends WebPage {
 			new Form<CompetirAppModel>("competirForm", new CompoundPropertyModel<CompetirAppModel>(this.battleground));
 		this.createTableRobotsPreparedToFight(competirForm);
 		this.createButton(competirForm);
-		this.backToPage();
 		this.add(competirForm);
 	}
 	
@@ -48,13 +47,14 @@ public class CompetirPage extends WebPage {
 			@Override
 			public void onSubmit() {
 				CompetirPage.this.battleground.competirPorHonor();
+				CompetirPage.this.backToPage();
 			}
 		});
 		compraForm.add(new Button("Cancelar"){
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
-				
+				CompetirPage.this.backToPage();
 			}
 		});
 	}
