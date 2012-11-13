@@ -25,7 +25,7 @@ public class IndexPage extends WebPage{
 		this.indexJugador = new IndexJugador();
 		this.player = this.indexJugador.getJugador();
 		Form<IndexJugador> indexJugador = new Form<IndexJugador>("IndexJugadorForm",new CompoundPropertyModel<IndexJugador>(this.indexJugador));
-		//this.createButtonComprar(indexJugador);
+		this.createButtonComprar(indexJugador);
 		this.createTableRobotPlayer(indexJugador);
 		this.add(indexJugador);
 		this.reloadPage();
