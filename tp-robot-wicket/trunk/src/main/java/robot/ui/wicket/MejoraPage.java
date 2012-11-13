@@ -30,7 +30,7 @@ public class MejoraPage extends WebPage{
 		Form<MejoraAppModel> mejoraForm = new Form<MejoraAppModel>("mejoraForm",new CompoundPropertyModel<MejoraAppModel>(this.tiendaDeMejora));
 		this.createTableMejora(mejoraForm);
 		//this.createFieldOfText(mejoraForm);
-		//this.createButton(mejoraForm);
+		this.createButton(mejoraForm);
 		this.add(mejoraForm);
 	}
 

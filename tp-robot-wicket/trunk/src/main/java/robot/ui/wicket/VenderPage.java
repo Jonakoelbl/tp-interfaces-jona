@@ -25,6 +25,7 @@ public class VenderPage extends WebPage{
 		Form<VentaAppModel> tiendaForm = new Form<VentaAppModel>("tiendaForm",new CompoundPropertyModel<VentaAppModel>(this.tiendaDeVenta));
 		this.createPanelOfText(tiendaForm);
 		this.createOnSummit(tiendaForm);
+		this.add(tiendaForm);
 	}
 
 	protected void createOnSummit(Form<VentaAppModel> tiendaForm) {
@@ -49,9 +50,9 @@ public class VenderPage extends WebPage{
 	}
 
 	protected void createPanelOfText(Form<VentaAppModel> tiendaForm) {
-		tiendaForm.add(new Label("robotNombre"));
-		tiendaForm.add(new Label("nivelDeDeterioro"));
-		tiendaForm.add(new Label("precio"));
-		tiendaForm.add(new Label("ofertaDelSistema"));
+		tiendaForm.add(new Label("robotAVender.nombreRobot"));
+		tiendaForm.add(new Label("robotAVender.nivelDeDeterioro"));
+		tiendaForm.add(new Label("robotAVender.precio"));
+		tiendaForm.add(new Label("tienda.oferta"));
 	}
 }
