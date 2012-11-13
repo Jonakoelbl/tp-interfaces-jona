@@ -25,7 +25,9 @@ public class RepararPage extends WebPage{
 		Form<ReparacionAppModel> robotForm = new Form<ReparacionAppModel> ("robotARepararForm",new CompoundPropertyModel<ReparacionAppModel>(this.tiendaDeReparacion));
 		this.createFieldOfTextNivelDeDeterioro(robotForm);
 		this.createTextBox(robotForm);
+		this.createFieldOfTextCosto(robotForm);
 		this.createButtonAction(robotForm);
+		this.add(robotForm);
 	}
 	
 	private void createButtonAction(Form<ReparacionAppModel> robotForm) {
@@ -63,8 +65,12 @@ public class RepararPage extends WebPage{
 	private void createTextBox(Form<ReparacionAppModel> robotForm) {
 		robotForm.add(new TextField<String>("deterioroAReparar"));
 	}
-
+	
+	protected void createFieldOfTextCosto(Form<ReparacionAppModel> robotForm){
+		robotForm.add(new Label("costo"));
+	}
+	
 	protected void createFieldOfTextNivelDeDeterioro(Form<ReparacionAppModel> robotForm){
-		robotForm.add(new Label("NivelDeDeterioro"));
+		robotForm.add(new Label("robotAReparar.nivelDeDeterioro"));
 	}
 }

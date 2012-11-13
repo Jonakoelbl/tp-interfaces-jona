@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head> 
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<script src="js/bootstrap_modal.js"></script> 
+</head>
+<body>
+	<form wicket:id="robotARepararForm">
+		<ul>
+			<li><span>Da&ntilde;o del Robot : </span><span wicket:id="robotAReparar.nivelDeDeterioro">Deterioro</span></li>
+			<li><span>Da&ntilde;o a Reparar : </span><input type="text" wicket:id="deterioroAReparar" /></li>
+			<li><span>Costo : </span><span wicket:id="costo">Costo</span></li>
+		</ul> 
+		<input wicket:id="calcular" type="submit" name="calcular" value="Calcular" />
+		<input wicket:id="Reparar" type="submit" name="Reparar" value="Reparar" />
+		<input wicket:id="Cancelar" type="submit" name="Cancelar" value="Cancelar" />
+	</form>
+</body>
+</html>
