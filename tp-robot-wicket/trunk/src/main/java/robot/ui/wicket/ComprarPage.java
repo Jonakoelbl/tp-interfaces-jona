@@ -1,6 +1,3 @@
-/**
- * 
- */
 package robot.ui.wicket;
 
 import org.apache.wicket.markup.html.WebPage;
@@ -9,6 +6,7 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -16,25 +14,34 @@ import org.apache.wicket.model.PropertyModel;
 
 import robots.appModel.ComprarAppModel;
 import robots.appModel.IndexJugador;
-import robots.appModel.JugadorInicio;
 import DominioRobot.Robot;
 
 public class ComprarPage extends WebPage {
 
 	private static final long serialVersionUID = 1L;
 
-	private final WebPage mainPage;
+	private final IndexPage mainPage;
 	private final ComprarAppModel comprarModel;
 
-	public ComprarPage(WebPage main, IndexJugador index) {
+	public ComprarPage(IndexPage main, IndexJugador index) {
 		this.mainPage = main;
 		this.comprarModel = new ComprarAppModel(index.getJugador(),	index.getTienda());
 		Form<ComprarAppModel> compraForm = 
 			new Form<ComprarAppModel>("compraForm", new CompoundPropertyModel<ComprarAppModel>(this.comprarModel));
 		this.createTableRobotsForSale(compraForm);
+		this.createTextFieldToOffer(compraForm);
 		this.createButton(compraForm);
 		this.add(compraForm);
 
+	}	
+	
+	protected void backMainPage(){
+		mainPage.reloadPage();
+		this.setResponsePage(mainPage);
+	}
+	
+	protected void createTextFieldToOffer(Form<ComprarAppModel> comprarForm) {
+		comprarForm.add(new TextField<String>("oferta"));
 	}
 	
 	protected void createButton(Form<ComprarAppModel> compraForm) {
@@ -50,6 +57,12 @@ public class ComprarPage extends WebPage {
 			@Override
 			public void onSubmit() {
 				ComprarPage.this.comprarModel.comprar();
+			}
+		});
+		compraForm.add(new Button("Cancelar"){
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onSubmit() {
 			}
 		});
 	}

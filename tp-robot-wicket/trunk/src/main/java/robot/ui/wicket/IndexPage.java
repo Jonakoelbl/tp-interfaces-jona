@@ -27,7 +27,6 @@ public class IndexPage extends WebPage{
 		Form<IndexJugador> indexJugador = new Form<IndexJugador>("IndexJugadorForm",new CompoundPropertyModel<IndexJugador>(this.indexJugador));
 		//this.createButtonComprar(indexJugador);
 		this.createTableRobotPlayer(indexJugador);
-		//this.createTableOpponentPlayer(indexJugador);
 		this.add(indexJugador);
 		this.reloadPage();
 	}
@@ -35,25 +34,6 @@ public class IndexPage extends WebPage{
 	public void reloadPage() {
 		//TODO: actualizar la lista de los robots del jugador...
 	}
-	////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////Vista de la Tabla de contrincantes//////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////////
-	private void createTableOpponentPlayer(Form<IndexJugador> parent) {
-		parent.add(new PropertyListView<Robot>("robotsDeLosContrincantes"){
-			private static final long serialVersionUID = 1L;
-			@Override
-			protected void populateItem(ListItem<Robot> item) {
-				item.add(new Label("Propietario"));
-				item.add(new Label("NombreDelRobot"));
-				item.add(new Label("Poder"));
-				item.add(new Label("NivelDeDeterioro"));
-			}
-		});
-	}
-
-	/////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////Vista de la tabla de los robots del jugador//////////////////////////
-	/////////////////////////////////////////////////////////////////////////////////////////
 	
 	private void createTableRobotPlayer(Form<IndexJugador> parent) {
 		parent.add(new PropertyListView<Robot>("robotsDelJugador") {
@@ -67,9 +47,24 @@ public class IndexPage extends WebPage{
 				item.add(createButtonReparar(item.getModelObject()));
 				item.add(createButtonVender(item.getModelObject()));
 				item.add(createButtonMejora(item.getModelObject()));
-				//competir
+				item.add(createButtonCompetir(item.getModelObject()));
 			}
 		});
+	}
+	
+	protected Component createButtonCompetir(final Robot robot) {
+		return new Button("Competir"){
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onSubmit() {
+				IndexPage.this.goToButtonCompetir(robot);
+			}
+		};
+	}
+	
+	protected void goToButtonCompetir(Robot robotPlayer) {
+		CompetirPage competirPage = new CompetirPage(this.indexJugador, robotPlayer, this);
+		this.setResponsePage(competirPage);
 	}
 	
 	protected Component createButtonMejora(final Robot robot) {
