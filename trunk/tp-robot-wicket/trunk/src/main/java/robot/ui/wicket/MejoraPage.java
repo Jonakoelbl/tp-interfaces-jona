@@ -5,9 +5,12 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.Radio;
+import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.PropertyListView;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.PropertyModel;
 
 import robots.appModel.IndexJugador;
 import robots.appModel.MejoraAppModel;
@@ -28,6 +31,7 @@ public class MejoraPage extends WebPage{
 		this.createFieldOfText(mejoraForm);
 		this.createTableMejora(mejoraForm);
 		this.createButton(mejoraForm);
+		this.add(mejoraForm);
 	}
 
 	private void createButton(Form<MejoraAppModel> mejoraForm) {
@@ -50,15 +54,19 @@ public class MejoraPage extends WebPage{
 	}
 
 	protected void createTableMejora(Form<MejoraAppModel> mejoraForm) {
-		mejoraForm.add(new PropertyListView<Mejora>("mejorasEnVenta") {
+		RadioGroup<Mejora> group =new RadioGroup<Mejora>("mejoraSeleccionado");
+		mejoraForm.add(group);
+
+		ListView<Mejora> mejoras=new ListView<Mejora>("mejoraSeleccionado", this.tiendaDeMejora.getMejorasEnVenta()) {
 			private static final long serialVersionUID = 1L;
-			@Override
-			protected void populateItem(ListItem<Mejora> mej) {
-				mej.add(new Label("descripcion"));
-				mej.add(new Label("mejoraDePoder"));
-				mej.add(new Label("precio"));
-			}			
-		});
+		    protected void populateItem(ListItem<Mejora> item) {
+		      item.add(new Radio<Mejora>("mejora", item.getModel()));
+		      item.add(new Label("descripcion", new PropertyModel<Mejora>(item.getModel(), "descripcion")));
+		      item.add(new Label("mejoraDePoder", new PropertyModel<Mejora>(item.getModel(), "mejoraDePoder")));
+		      item.add(new Label("precio", new PropertyModel<Mejora>(item.getModel(), "precio")));
+		    }
+		   };
+		group.add(mejoras);
 	}
 	
 	protected void backMainPage(){
@@ -67,6 +75,6 @@ public class MejoraPage extends WebPage{
 	}
 	
 	protected void createFieldOfText(Form<MejoraAppModel> mejoraForm) {
-		mejoraForm.add(new Label("poder"));
+		mejoraForm.add(new Label("robotAMejorar.poder"));
 	}
 }
