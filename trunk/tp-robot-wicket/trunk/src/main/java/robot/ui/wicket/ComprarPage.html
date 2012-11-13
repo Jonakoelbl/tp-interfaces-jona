@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-<head> 
+<head>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<script src="js/bootstrap_modal.js"></script> 
+	<script src="js/bootstrap_modal.js"></script>
 </head>
 <body>
-	<form wicket:id="compraForm">
-		<span wicket:id="robotAComprar"></span>
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Opci&oacute;n</th>
-					<th>Nombre de Robot</th>
-				</tr>
-			</thead>
-			<tbody>
-			<tr wicket:id="robots">
-				<td><input type="radio" wicket:id="robot" /></td>
-				<td><span wicket:id="nombreRobot"></span></td>
+
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Nombre de Robot</th>
+				<th>Acci&oacute;n</th>
 			</tr>
-			</tbody>
-		</table>
-		<input wicket:id="Cancelar" type="submit" name="Cancelar" value="Cancelar" />
-		<input wicket:id="Aceptar" type="submit" name="Aceptar" value="Aceptar" /> 
-	</form>
+		</thead>
+		<tbody>
+			<tr wicket:id="robots">
+				<td wicket:id="nombre-robot"></td>
+				<td><a wicket:id="link-ofertar" href="#" title="Realizar oferta">Ofertar</a></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr></tr>
+		</tfoot>
+	</table>
+
 </body>
 </html>

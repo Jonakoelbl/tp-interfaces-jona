@@ -57,7 +57,9 @@ public class MejoraPage extends WebPage{
 		RadioGroup<Mejora> group =new RadioGroup<Mejora>("mejoraSeleccionado");
 		mejoraForm.add(group);
 
+
 		ListView<Mejora> mejoras=new ListView<Mejora>("mejorasEnVenta", this.tiendaDeMejora.getMejorasEnVenta()) {
+
 			private static final long serialVersionUID = 1L;
 		    protected void populateItem(ListItem<Mejora> item) {
 		      item.add(new Radio<Mejora>("mejora", item.getModel()));
