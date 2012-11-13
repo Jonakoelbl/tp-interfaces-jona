@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 
 import robots.appModel.ComprarAppModel;
@@ -25,6 +28,8 @@ public class ComprarPage extends WebPage {
 
 		this.mainPage = main;
 		this.comprarModel = new ComprarAppModel(index.getJugador(), index.getTienda());
+		Form<ComprarAppModel> compraForm = new Form<ComprarAppModel>("compraForm",new CompoundPropertyModel<ComprarAppModel	>(this.comprarModel));
+		add(new TextField<String>("oferta"));
 		
 		add(new ListView<Robot>("robots", new PropertyModel<List<Robot>>(comprarModel, "tienda.robotsEnVenta")) {
 
@@ -41,10 +46,16 @@ public class ComprarPage extends WebPage {
 					@Override
 					public void onClick() {
 						ComprarPage.this.comprarModel.realizarOferta();
+						ComprarPage.this.backToPage();
 					}
 				};
 				item.add(linkOfertar);
 			}
 		});
+		add(compraForm);
 	}
+	protected void backToPage(){
+		this.setResponsePage(mainPage);
+	}
+	
 }
