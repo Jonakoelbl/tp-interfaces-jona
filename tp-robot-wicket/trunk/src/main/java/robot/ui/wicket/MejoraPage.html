@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head> 
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<script src="js/bootstrap_modal.js"></script> 
+</head>
+<body>
+	
+	<form wicket:id="mejorarRobotForm">
+	
+		<table class="table table-bordered table-striped">
+			<tr wicket:id="mejoras">
+				<td><span wicket:id="descripcion"></span></td>
+				<td><span wicket:id="mejoraDePoder"></span></td>
+				<td><span wicket:id="precio"></span></td>
+				<td><input wicket:id="mejora" name="mejora" type="radio" /></td>
+			</tr> 
+		</table>
+		<input wicket:id="Aceptar" type="submit" name="Aceptar" value="Aceptar" />
+		<input wicket:id="Cancelar" type="submit" name="Cancelar" value="Cancelar" />
+	</form>
+</body>
+</html>
