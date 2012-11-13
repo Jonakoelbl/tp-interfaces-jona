@@ -19,15 +19,19 @@ public class IndexPage extends WebPage{
 	private static final long serialVersionUID = 1l;
 	
 	private final IndexJugador indexJugador;
-	private final Jugador player;
 	
 	public IndexPage() {
 		this.indexJugador = new IndexJugador();
-		this.player = this.indexJugador.getJugador();
 		Form<IndexJugador> indexJugador = new Form<IndexJugador>("IndexJugadorForm",new CompoundPropertyModel<IndexJugador>(this.indexJugador));
+		this.createLabelUsernameAndMoney(indexJugador);
 		this.createButtonComprar(indexJugador);
 		this.createTableRobotPlayer(indexJugador);
 		this.add(indexJugador);
+	}
+	
+	protected void createLabelUsernameAndMoney(Form<IndexJugador> form){
+		form.add(new Label("jugador.nombre"));
+		form.add(new Label("jugador.dinero"));
 	}
 	
 	private void createTableRobotPlayer(Form<IndexJugador> parent) {
@@ -103,7 +107,7 @@ public class IndexPage extends WebPage{
 	}
 
 	protected void goToButtonReparar(Robot robotAReparar) {
-		RepararPage repararPage = new RepararPage(robotAReparar,player, this);
+		RepararPage repararPage = new RepararPage(robotAReparar,this.indexJugador.getJugador(), this);
 		this.setResponsePage(repararPage);
 	}
 
