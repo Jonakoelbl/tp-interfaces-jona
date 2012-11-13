@@ -6,18 +6,18 @@
 </head>
 <body>
 	
-	<form wicket:id="mejorarRobotForm">
-	
+	<form wicket:id="mejoraForm">
+	<span wicket:id="mejoraSeleccionado">
 		<table class="table table-bordered table-striped">
-			<tr wicket:id="mejoras">
+			<tr wicket:id="mejorasEnVenta">
+				<td><input wicket:id="mejora" type="radio" /></td>
 				<td><span wicket:id="descripcion"></span></td>
 				<td><span wicket:id="mejoraDePoder"></span></td>
 				<td><span wicket:id="precio"></span></td>
-				<td><input wicket:id="mejora" name="mejora" type="radio" /></td>
 			</tr> 
 		</table>
-		<input wicket:id="Aceptar" type="submit" name="Aceptar" value="Aceptar" />
-		<input wicket:id="Cancelar" type="submit" name="Cancelar" value="Cancelar" />
-	</form>
+		<!-- <input wicket:id="Aceptar" type="submit" name="Aceptar" value="Aceptar" />
+		<input wicket:id="Cancelar" type="submit" name="Cancelar" value="Cancelar" />  -->
+	</span></form>
 </body>
 </html>
