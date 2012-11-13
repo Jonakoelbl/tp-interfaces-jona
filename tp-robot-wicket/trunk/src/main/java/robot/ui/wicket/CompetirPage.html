@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head> 
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<script src="js/bootstrap_modal.js"></script> 
+</head>
+<body>
+	<form wicket:id="competirForm">
+	<span wicket:id="contrincanteSeleccionado">
+		<table class="table table-bordered table-striped">
+			<tr wicket:id="robotsPreparedToFight">
+				<td><input wicket:id="robot" type="radio" /></td>
+				<td><span wicket:id="nombreRobot"></span></td>
+				<td><span wicket:id="propietario"></span></td>
+				<td><span wicket:id="poder"></span></td>
+			</tr> 
+		</table>
+	</span>
+	<input wicket:id="Competir" type="submit" value= "Competir"/>
+	<input wicket:id="Cancelar" type="submit" value= "Cancelar"/>
+	</form>
+</body>
+</html>
