@@ -27,6 +27,12 @@ public class CompetirAppModel {
 	private Tienda tienda;// = new Tienda();
 
 
+	public CompetirAppModel(Jugador unJugador, Robot unDesafiante, Tienda tienda) {
+		this.robotSeleccionado = unDesafiante;
+		this.setJugador(unJugador);
+		this.tienda = tienda;
+	}
+	
 	public CompetirAppModel(Jugador unJugador, Robot unDesafiante, Robot unContrincante, Tienda tienda) {
 		this.robotSeleccionado = unDesafiante;
 		this.setContrincanteSeleccionado(unContrincante);
