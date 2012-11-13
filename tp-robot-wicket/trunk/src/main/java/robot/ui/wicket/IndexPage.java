@@ -25,9 +25,10 @@ public class IndexPage extends WebPage{
 		this.indexJugador = new IndexJugador();
 		this.player = this.indexJugador.getJugador();
 		Form<IndexJugador> indexJugador = new Form<IndexJugador>("IndexJugadorForm",new CompoundPropertyModel<IndexJugador>(this.indexJugador));
-		this.createButtonComprar(indexJugador);
+		//this.createButtonComprar(indexJugador);
 		this.createTableRobotPlayer(indexJugador);
-		this.createTableOpponentPlayer(indexJugador);
+		//this.createTableOpponentPlayer(indexJugador);
+		this.add(indexJugador);
 		this.reloadPage();
 	}
 	
@@ -59,9 +60,9 @@ public class IndexPage extends WebPage{
 			private static final long serialVersionUID = 1L;
 			@Override
 			protected void populateItem(ListItem<Robot> item) {
-				item.add(new Label("NombreDelRobot"));
-				item.add(new Label("Poder"));
-				item.add(new Label("NivelDeDeterioro"));
+				item.add(new Label("nombreRobot"));
+				item.add(new Label("poder"));
+				item.add(new Label("nivelDeDeterioro"));
 				
 				item.add(createButtonReparar(item.getModelObject()));
 				item.add(createButtonVender(item.getModelObject()));
@@ -87,7 +88,7 @@ public class IndexPage extends WebPage{
 	}
 
 	protected Component createButtonVender(final Robot robot) {
-		return new Button("Reparar") {
+		return new Button("Vender") {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
