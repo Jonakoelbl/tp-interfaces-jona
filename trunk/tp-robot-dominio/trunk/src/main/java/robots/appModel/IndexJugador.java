@@ -1,12 +1,27 @@
 package robots.appModel;
 
+import java.util.List;
+
 import DominioRobot.Jugador;
+import DominioRobot.Robot;
 import DominioRobot.Tienda;
 
 public class IndexJugador {
 	private Jugador jugador;
 	private Tienda tienda;
 
+	public IndexJugador() {
+		this.tienda = new Tienda();
+	}
+	
+	public List<Robot> getRobotsDelJugador(){
+		return jugador.getMisRobots();
+	}
+	
+	public List<Robot> getRobotsDeLosContrincantes(){
+		return this.tienda.getAllRobotsForCompetition();
+	}
+	
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
 	}
