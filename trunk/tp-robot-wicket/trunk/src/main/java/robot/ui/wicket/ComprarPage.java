@@ -29,7 +29,8 @@ public class ComprarPage extends WebPage {
 		this.mainPage = main;
 		this.comprarModel = new ComprarAppModel(index.getJugador(), index.getTienda());
 		Form<ComprarAppModel> compraForm = new Form<ComprarAppModel>("compraForm",new CompoundPropertyModel<ComprarAppModel	>(this.comprarModel));
-		add(new TextField<String>("oferta"));
+		compraForm.add(new TextField<String>("oferta"));		
+		add(compraForm);
 		
 		add(new ListView<Robot>("robots", new PropertyModel<List<Robot>>(comprarModel, "tienda.robotsEnVenta")) {
 
@@ -52,7 +53,6 @@ public class ComprarPage extends WebPage {
 				item.add(linkOfertar);
 			}
 		});
-		add(compraForm);
 	}
 	protected void backToPage(){
 		this.setResponsePage(mainPage);

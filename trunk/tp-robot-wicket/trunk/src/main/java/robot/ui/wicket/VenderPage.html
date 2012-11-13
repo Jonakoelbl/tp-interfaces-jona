@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:wicket="http://wicket.apache.org">
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>TP UI- TP 4</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<script src="js/bootstrap_modal.js"></script> 
+</head>
+<body>
+	   <table width="80%">
+            <tr>
+                <td>
+                    <h1>Vender</h1>
+                </td>
+            </tr>
+        </table>
+        <form wicket:id="tiendaForm">
+			<ul>
+			<li><span>Nombre : </span><span wicket:id="robotAVender.nombreRobot">Nombre</span></li>
+			<li><span>Nivel de deterioro : </span><span wicket:id="robotAVender.nivelDeDeterioro">Deterioro</span></li>
+			<li><span>Precio original : </span><span wicket:id="robotAVender.precio">Precio</span></li>
+			<li><span>OFERTA : </span><span wicket:id="tienda.oferta">Oferta</span></li>
+		</ul> 
+		<input wicket:id="Aceptar" type="submit" name="aceptar" value="Aceptar" />	 
+		<input wicket:id="Cancelar" type="submit" name="cancelar" value="Cancelar" />       
+        </form>
+</body>
+</html>

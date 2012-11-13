@@ -48,13 +48,15 @@ public class RepararPage extends WebPage{
 				RepararPage.this.backMainPage();
 			}
 		});
-		robotForm.add(new Button("Cancelar"){
+		Button cancelar = new Button("Cancelar"){
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				RepararPage.this.backMainPage();
 			}
-		});
+		};
+		cancelar.setDefaultFormProcessing(false);
+		robotForm.add(cancelar);
 	}
 
 	protected void backMainPage() {
