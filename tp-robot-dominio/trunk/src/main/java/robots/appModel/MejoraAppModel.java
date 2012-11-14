@@ -1,5 +1,6 @@
 package robots.appModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
@@ -10,7 +11,7 @@ import DominioRobot.Robot;
 import DominioRobot.Tienda;
 
 @Observable
-public class MejoraAppModel {
+public class MejoraAppModel implements Serializable{
 	
 	private Robot robotAMejorar;
 	private Jugador jugador;

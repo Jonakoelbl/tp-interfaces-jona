@@ -1,5 +1,6 @@
 package DominioRobot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,7 +14,7 @@ import org.uqbar.commons.utils.Observable;
  *
  */
 @Observable
-public class Tienda {
+public class Tienda implements Serializable{
 	public static final String MEJORAS = "mejoras";
 	public static final String ROBOTS_EN_VENTA = "robotsEnVenta";
 	public static final String ROBOTS_EN_COMPETENCIA = "robotsEnCompetencia";
@@ -227,13 +228,14 @@ public class Tienda {
 	 * @param unRobot
 	 * @return
 	 */
-	protected Boolean aceptarOfertaDeJugador(Integer oferta, Robot unRobot){
+	protected Boolean aceptarOfertaDeJugador(Integer oferta, Robot unRobot) {
 		return new Random().nextDouble() <= 0.9 * Math.pow((oferta / unRobot.getPrecio()),2.0);
 	}
 	
 	protected boolean aceptaOferta(Integer oferta, Robot robot){
-		return (robot.getPrecio() * 0.1 >= oferta) || aceptarOfertaPrecioBase(oferta, robot.getPrecio()) ||
-		this.aceptarPrecio75Por(oferta, robot.getPrecio()) || this.aceptarPrecio10Por(oferta, robot.getPrecio());			
+		return true;
+//		return (robot.getPrecio() * 0.1 >= oferta) || aceptarOfertaPrecioBase(oferta, robot.getPrecio()) ||
+//		this.aceptarPrecio75Por(oferta, robot.getPrecio()) || this.aceptarPrecio10Por(oferta, robot.getPrecio());			
 	}
 	
 	protected boolean aceptarPrecio10Por(Integer oferta, Integer precioRobot) {

@@ -1,5 +1,7 @@
 package robots.appModel;
 
+import java.io.Serializable;
+
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
@@ -7,7 +9,7 @@ import DominioRobot.Jugador;
 import DominioRobot.Robot;
 
 @Observable
-public class ReparacionAppModel {
+public class ReparacionAppModel implements Serializable{
 	public static final String COSTO = "costo";
 	public static final String DETERIORO_A_REPARAR = "deterioroAReparar";
 	
