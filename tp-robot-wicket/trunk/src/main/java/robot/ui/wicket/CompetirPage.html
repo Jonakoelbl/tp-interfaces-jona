@@ -25,6 +25,7 @@
 	<div class="container">
 		<section class="misrobots">
 		<form wicket:id="competirForm">
+		<span>Apuesta a Realizar : </span><input type="text" wicket:id="apuestaRealizada" />
 		<span wicket:id="contrincanteSeleccionado">
 			<table class="table table-bordered table-striped" style="float:left;">
 				<thead>
@@ -33,6 +34,7 @@
 						<th>Nombre</th>
 						<th>Propietario</th>
 						<th>Poder</th>
+						<th>Apuesta</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -41,6 +43,7 @@
 						<td><span wicket:id="nombreRobot"></span></td>
 						<td><span wicket:id="propietario"></span></td>
 						<td><span wicket:id="poder"></span></td>
+						<td></td>
 					</tr>
 				</tbody> 
 			</table>

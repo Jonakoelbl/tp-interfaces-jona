@@ -8,6 +8,7 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -32,9 +33,14 @@ public class CompetirPage extends WebPage {
 		this.battleground = new CompetirAppModel(indexJugador.getJugador(), robotPlayer, indexJugador.getTienda());
 		Form<CompetirAppModel> competirForm = 
 			new Form<CompetirAppModel>("competirForm", new CompoundPropertyModel<CompetirAppModel>(this.battleground));
+		this.createTextOfFieldApuesta(competirForm);
 		this.createTableRobotsPreparedToFight(competirForm);
 		this.createButton(competirForm);
 		this.add(competirForm);
+	}
+	
+	protected void createTextOfFieldApuesta(Form<CompetirAppModel> form) {
+		form.add(new TextField<String>("apuestaRealizada"));
 	}
 	
 	protected void backToPage(){

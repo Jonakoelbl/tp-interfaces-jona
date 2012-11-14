@@ -26,7 +26,13 @@
 	  </div>
 	
 	  <div class="container">
-		<form wicket:id="IndexJugadorForm">
+	  <form wicket:id="IndexJugadorForm">
+		<section class="micuenta">
+			<div class="page-header">
+				<h1><span wicket:id="jugador.nombre"></span></h1>
+			</div>
+			<div class="saldo"><strong>Saldo</strong> : $&nbsp; <span wicket:id="jugador.dinero"></span></div>
+		</section>
 			<input type="submit" wicket:id="Comprar" value="Comprar" />
 			<table class="table table-bordered table-striped">
 				<thead>
