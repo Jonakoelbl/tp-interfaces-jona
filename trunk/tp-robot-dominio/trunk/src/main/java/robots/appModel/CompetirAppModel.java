@@ -1,5 +1,6 @@
 package robots.appModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableUtils;
@@ -11,7 +12,7 @@ import DominioRobot.Robot;
 import DominioRobot.Tienda;
 
 @Observable
-public class CompetirAppModel {
+public class CompetirAppModel implements Serializable{
 	
 	public static final String ROBOT_SELECCIONADO = "robotSeleccionado";
 	public static final String ROBOTS_DEL_JUGADOR = "robots";

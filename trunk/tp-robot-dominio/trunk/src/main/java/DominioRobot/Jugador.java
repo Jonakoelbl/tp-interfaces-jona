@@ -1,5 +1,6 @@
 package DominioRobot;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Vector;
 
@@ -8,7 +9,7 @@ import org.uqbar.commons.utils.Observable;
 
 
 @Observable
-public class Jugador {
+public class Jugador implements Serializable{
 	private String nombre; 
 	private String password;
 	private List<Robot> misRobots = new Vector<Robot>();

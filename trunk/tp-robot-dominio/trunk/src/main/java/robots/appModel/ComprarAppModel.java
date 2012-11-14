@@ -1,13 +1,17 @@
 package robots.appModel;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
+
+import org.uqbar.commons.utils.Observable;
 
 import DominioRobot.Jugador;
 import DominioRobot.Robot;
 import DominioRobot.Tienda;
 
-public class ComprarAppModel {
+@Observable
+public class ComprarAppModel implements Serializable{
 
 	private Jugador jugador;
 	private Robot robotAComprar;
@@ -20,9 +24,9 @@ public class ComprarAppModel {
 	}
 	
 	public void realizarOferta() {
-		Integer random = 0;
-		do{random = new Random().nextInt(20);}while(random <= 2);
-		this.setOferta(robotAComprar.getPrecio() * (random/100));
+//		Integer random = Math.random();
+//		do{random = new Random().nextInt(20);}while(random <= 2);
+//		this.setOferta(robotAComprar.getPrecio() * (random/100));
 	}
 	
 	public void comprar(){
@@ -35,7 +39,9 @@ public class ComprarAppModel {
 	}
 	
 	private void validar() {
-		//TODO:
+		//TODO
+//		if(this.oferta < 0)
+//			throw 
 	}
 
 	public void setOferta(Integer oferta) {

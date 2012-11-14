@@ -1,9 +1,11 @@
 package DominioRobot;
 
+import java.io.Serializable;
+
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Mejora{
+public class Mejora implements Serializable{
 	public static final String DESCRIPCION = "descripcion";
 	public static final String MEJORA_DE_PODER = "mejoraDePoder";
 	public static final String PRECIO = "precio";

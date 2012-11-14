@@ -1,5 +1,6 @@
 package DominioRobot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,7 +8,7 @@ import java.util.Random;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Robot {
+public class Robot implements Serializable{
 	public static final String 
 		NOMBRE_ROBOT = "nombreRobot",
 		PROPIETARIO = "propietario",
