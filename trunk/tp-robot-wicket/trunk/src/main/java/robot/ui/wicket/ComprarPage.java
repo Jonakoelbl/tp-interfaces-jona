@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -30,9 +32,10 @@ public class ComprarPage extends WebPage {
 		this.comprarModel = new ComprarAppModel(index.getJugador(), index.getTienda());
 		Form<ComprarAppModel> compraForm = new Form<ComprarAppModel>("compraForm",new CompoundPropertyModel<ComprarAppModel	>(this.comprarModel));
 		compraForm.add(new TextField<String>("oferta"));		
+		this.createButtonBack(compraForm);
 		add(compraForm);
 		
-		add(new ListView<Robot>("robots", new PropertyModel<List<Robot>>(comprarModel, "tienda.robotsEnVenta")) {
+		compraForm.add(new ListView<Robot>("robots", new PropertyModel<List<Robot>>(comprarModel, "tienda.robotsEnVenta")) {
 
 			private static final long serialVersionUID = 1L;
 
@@ -41,12 +44,15 @@ public class ComprarPage extends WebPage {
 				
 				final Robot robot = item.getModelObject();
 				item.add(new Label("nombre-robot", robot.getNombreRobot()));
-				Link<String> linkOfertar = new Link<String>("link-ofertar") {
+				item.add(new Label("precio",robot.getPrecio().toString()));
+				SubmitLink linkOfertar = new SubmitLink("link-ofertar") {
 					private static final long serialVersionUID = 1L;
 
 					@Override
-					public void onClick() {
-						ComprarPage.this.comprarModel.realizarOferta();
+					public void onSubmit() {
+						ComprarPage.this.comprarModel.setRobotAComprar(robot);
+						ComprarPage.this.comprarModel.realizarOferta();//valida
+						ComprarPage.this.comprarModel.comprar();
 						ComprarPage.this.backToPage();
 					}
 				};
@@ -54,6 +60,17 @@ public class ComprarPage extends WebPage {
 			}
 		});
 	}
+	
+	protected void  createButtonBack(Form<ComprarAppModel> form) {
+		form.add(new Button("Volver"){
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onSubmit() {
+				ComprarPage.this.backToPage();
+			}
+		});
+	}
+	
 	protected void backToPage(){
 		this.setResponsePage(mainPage);
 	}
