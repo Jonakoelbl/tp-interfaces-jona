@@ -73,7 +73,7 @@ public class CompetirPage extends WebPage {
 		ListView<Robot> robotsPreparedToFight =new ListView<Robot>("robotsPreparedToFight", this.robotsPreparedToFight) { 
 		    protected void populateItem(ListItem<Robot> item) {
 		      item.add(new Radio<Robot>("robot", item.getModel()));
-		      item.add(new Label("propietario", new PropertyModel<Robot>(item.getModel(), "propietario")));
+		      item.add(new Label("nombrePropietario", new PropertyModel<Robot>(item.getModel(), "nombrePropietario")));
 		      item.add(new Label("nombreRobot", new PropertyModel<Robot>(item.getModel(), "nombreRobot")));
 		      item.add(new Label("poder",new PropertyModel<Robot>(item.getModel(), "poder")));
 		    }

@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 
@@ -28,10 +29,22 @@ public class MejoraPage extends WebPage{
 		this.mainPage = mainPage;
 		this.tiendaDeMejora = new MejoraAppModel(dataBase.getJugador(),robotAMejorar, dataBase.getTienda());
 		Form<MejoraAppModel> mejoraForm = new Form<MejoraAppModel>("mejoraForm",new CompoundPropertyModel<MejoraAppModel>(this.tiendaDeMejora));
+		this.createTableUpgradeRobot(mejoraForm);
 		this.createTableMejora(mejoraForm);
-		//this.createFieldOfText(mejoraForm);
+		this.createFieldOfText(mejoraForm);
 		this.createButton(mejoraForm);
 		this.add(mejoraForm);
+	}
+	
+	private void createTableUpgradeRobot(Form<MejoraAppModel> parent) {
+		parent.add(new PropertyListView<Mejora>("robotAMejorar.actualizaciones") {
+			private static final long serialVersionUID = 1L;
+			@Override
+			protected void populateItem(ListItem<Mejora> item) {
+				item.add(new Label("descripcion"));
+				item.add(new Label("mejoraDePoder"));
+			}
+		});
 	}
 
 	private void createButton(Form<MejoraAppModel> mejoraForm) {

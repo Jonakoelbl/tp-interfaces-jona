@@ -51,7 +51,6 @@ public class ComprarPage extends WebPage {
 					@Override
 					public void onSubmit() {
 						ComprarPage.this.comprarModel.setRobotAComprar(robot);
-						ComprarPage.this.comprarModel.realizarOferta();//valida
 						ComprarPage.this.comprarModel.comprar();
 						ComprarPage.this.backToPage();
 					}
