@@ -23,6 +23,23 @@
 	   </div>
 	  </div>
 	<form wicket:id="mejoraForm">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Descripci&oacute;n</th>
+					<th>Poder de la mejora</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr wicket:id="robotAMejorar.actualizaciones">
+				<td><span wicket:id="descripcion"></span></td>
+				<td><span wicket:id="mejoraDePoder"></span></td>
+			</tr>
+			</tbody>
+		</table>
+		<ul>
+			<li><span>Poder actual del robot : </span><span wicket:id="robotAMejorar.poder">Poder</span></li>
+		</ul> 
 		<div class="container">
 		<span wicket:id="mejoraSeleccionado">
 			<table class="table table-bordered table-striped">
