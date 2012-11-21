@@ -36,12 +36,6 @@ public class Tienda implements Serializable{
 		this.agregarRobots(new Robot(0,"RBT2"));
 		this.agregarRobots(new Robot(0,"RBT3"));
 		this.agregarRobots(new Robot(0,"RBT4"));
-		
-		this.creaNuevoUsuario("Diego", "1234");
-		this.creaNuevoUsuario("Jona", "1234");
-		this.creaNuevoUsuario("Tinogasta", "vengoacompetir");
-		this.creaNuevoUsuario("LaFalda", "vengoaconseguirrobots");
-		this.creaNuevoUsuario("Circense", "nosealoquevengo");
 	}
 	
 	/**
@@ -106,7 +100,7 @@ public class Tienda implements Serializable{
 	}
 	
 	public void comprarRobot(Jugador jugador, Robot robot,Integer oferta){
-		if(aceptaOferta(oferta, robot)){
+		if(aceptarOfertaDeJugador(oferta, robot)){
 			jugador.vender(robot, oferta);
 			robot.fuisteVendido();
 			this.robotsEnVenta.add(robot);
@@ -182,8 +176,8 @@ public class Tienda implements Serializable{
 	
 	public List<Robot> getAllRobotsForCompetition(){
 		this.robotsEnCompetencia = new ArrayList<Robot>();
-		this.robotsEnCompetencia.addAll(this.getRobotsEnVenta());
-		this.robotsEnCompetencia.addAll(this.getRobotsDeJugadores());
+		SalaDeCompetidores competidores = new SalaDeCompetidores();
+		this.robotsEnCompetencia.addAll(competidores.getRobotsCompetidores());
 		return this.robotsEnCompetencia;
 	}
 	
@@ -193,12 +187,6 @@ public class Tienda implements Serializable{
 		this.setOferta(unRobot.getPrecio() * (random/100));
 	}
 
-	public void venderleRobot(Jugador jugador, Robot robotSeleccionado, Integer oferta) {
-		if(aceptaOferta(oferta, robotSeleccionado)){
-			jugador.comprar(robotSeleccionado, oferta);
-			this.robotsEnVenta.remove(robotSeleccionado);
-		}
-	}
 	/**
 	 * 
 	 * @param jugador
@@ -230,24 +218,6 @@ public class Tienda implements Serializable{
 	 */
 	protected Boolean aceptarOfertaDeJugador(Integer oferta, Robot unRobot) {
 		return new Random().nextDouble() <= 0.9 * Math.pow((oferta / unRobot.getPrecio()),2.0);
-	}
-	
-	protected boolean aceptaOferta(Integer oferta, Robot robot){
-		return true;
-//		return (robot.getPrecio() * 0.1 >= oferta) || aceptarOfertaPrecioBase(oferta, robot.getPrecio()) ||
-//		this.aceptarPrecio75Por(oferta, robot.getPrecio()) || this.aceptarPrecio10Por(oferta, robot.getPrecio());			
-	}
-	
-	protected boolean aceptarPrecio10Por(Integer oferta, Integer precioRobot) {
-		return precioRobot * 0.1 >= oferta ? this.compraAleatorea(0.09, oferta, precioRobot) : false;
-	}
-	
-	protected boolean aceptarPrecio75Por(Integer oferta, Integer precioRobot){
-		return precioRobot * 0.9 >= oferta ? this.compraAleatorea(0.5, oferta, precioRobot) : false;
-	}
-	
-	protected boolean aceptarOfertaPrecioBase(Integer oferta, Integer precioRobot){
-		return precioRobot == oferta ?  (this.compraAleatorea(0.9, oferta, precioRobot)) : false;
 	}
 	
 	protected boolean compraAleatorea(double porcentaje,Integer oferta, Integer precioRobot){

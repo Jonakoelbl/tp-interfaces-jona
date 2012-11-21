@@ -1,8 +1,10 @@
 package robots.appModel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import DominioRobot.Jugador;
@@ -25,11 +27,28 @@ public class MejoraAppModel implements Serializable{
 	}
 	
 	public void mejorar(){
+		this.validar();
 		this.tienda.venderMejora(this.jugador, this.robotAMejorar, this.mejoraSeleccionado);
 	}
 	
+	public void validar(){
+		if(this.jugador.getDinero() < this.mejoraSeleccionado.getPrecio())
+			throw new UserException("El Jugador no tiene suficiente dinero para realizar la accion");
+		if(this.mejoraSeleccionado == null)
+			throw new UserException("No se ha seleccionado ninguna mejora");
+	}
+	
+	/**
+	 * Da un listado de las mejoras disponible para actualizar un robot, 
+	 * filtrando con las actualizaciones que ya tiene el mismo. 
+	 */
 	public List<Mejora> getMejorasEnVenta(){
-		return this.tienda.getMejoras();
+		List<Mejora> mejorasSegunRobot = new ArrayList<Mejora>();
+		for(Mejora m:this.tienda.getMejoras()){
+			if(!this.robotAMejorar.contieneActualizacion(m))
+				mejorasSegunRobot.add(m);
+		}
+		return mejorasSegunRobot;
 	}
 	
 	public void setRobotAMejorar(Robot robotAMejorar) {

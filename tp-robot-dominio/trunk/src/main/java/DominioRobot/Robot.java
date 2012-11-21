@@ -52,6 +52,14 @@ public class Robot implements Serializable{
 	public void fuisteVendido() {
 		this.propietario = null;
 	}
+	
+	public boolean contieneActualizacion(Mejora mejora){
+		return this.actualizaciones.contains(mejora);
+	}
+	
+	public String getNombrePropietario(){
+		return this.propietario.getNombre();
+	}
 	//GETTERS AND SETTERS //
 	public void setNombreRobot(String nombreRobot) {
 		this.nombreRobot = nombreRobot;
