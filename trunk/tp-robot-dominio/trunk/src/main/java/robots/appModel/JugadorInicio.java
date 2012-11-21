@@ -58,7 +58,7 @@ public class JugadorInicio {
 	}
 	
 	public void comprar(){
-		this.tienda.venderleRobot(this.jugador, this.robotSeleccionado, this.tienda.getOferta());
+		this.tienda.venderleRobotAJugador(this.jugador, this.robotSeleccionado, this.tienda.getOferta());
 		List<Robot> robots = this.getRobotsEnVenta();
 		this.setRobots(null);
 		this.setRobots(robots);

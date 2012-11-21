@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import DominioRobot.Jugador;
@@ -23,15 +24,9 @@ public class ComprarAppModel implements Serializable{
 		this.tienda = tienda;
 	}
 	
-	public void realizarOferta() {
-//		Integer random = Math.random();
-//		do{random = new Random().nextInt(20);}while(random <= 2);
-//		this.setOferta(robotAComprar.getPrecio() * (random/100));
-	}
-	
 	public void comprar(){
 		this.validar();
-		this.tienda.venderleRobot(jugador, robotAComprar, getOferta());
+		this.tienda.venderleRobotAJugador(jugador, robotAComprar, oferta);
 	}
 
 	public List<Robot> getRobotsEnVenta(){
@@ -39,9 +34,14 @@ public class ComprarAppModel implements Serializable{
 	}
 	
 	private void validar() {
-		//TODO
-//		if(this.oferta < 0)
-//			throw 
+		if(this.oferta == null)
+			throw new UserException("No a ingresado una oferta");
+		if(this.oferta <= 0)
+			throw new UserException("El valor de la oferta es menor igual 0");
+		if(this.robotAComprar == null)
+			throw new UserException("No ha seleccionado un robot para comprar");
+		if(this.jugador.getDinero() < this.oferta)
+			throw new UserException("El Jugador no tiene suficiente dinero para realizar la accion");
 	}
 
 	public void setOferta(Integer oferta) {
