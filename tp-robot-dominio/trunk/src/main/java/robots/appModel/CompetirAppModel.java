@@ -1,13 +1,10 @@
 package robots.appModel;
 
 import java.io.Serializable;
-import java.util.List;
 
-import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 
 import DominioRobot.Jugador;
-import DominioRobot.Mejora;
 import DominioRobot.Robot;
 import DominioRobot.Tienda;
 

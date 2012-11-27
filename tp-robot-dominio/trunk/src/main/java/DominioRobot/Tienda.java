@@ -32,10 +32,10 @@ public class Tienda implements Serializable{
 		this.crearMejoras(new Mejora("Mochila voladora de propulsion", 4, 96));
 		this.crearMejoras(new Mejora("Lanza-cohetes teledirigidos", 13, 156));
 		
-		this.agregarRobots(new Robot(0,"RBT1"));
-		this.agregarRobots(new Robot(0,"RBT2"));
-		this.agregarRobots(new Robot(0,"RBT3"));
-		this.agregarRobots(new Robot(0,"RBT4"));
+		this.agregarRobots(new Robot("RBT1"));
+		this.agregarRobots(new Robot("RBT2"));
+		this.agregarRobots(new Robot("RBT3"));
+		this.agregarRobots(new Robot("RBT4"));
 	}
 	
 	/**
@@ -44,13 +44,15 @@ public class Tienda implements Serializable{
 	 * @return void
 	 */
 	
-	public void agregarJugador(Jugador unNuevoJugador){
-		this.getJugadores().add(unNuevoJugador);		
-	}
 	
 	/**
 	 * Sistema de logueo de un usuario
 	 */
+	public void agregarJugador(Jugador unNuevoJugador){
+		this.getJugadores().add(unNuevoJugador);		
+	}
+	
+	
 	public Jugador loguearUsuario(String usuario, String password){
 		Jugador jugador = confirmarUsuario(usuario);
 		if(confirmarPass(jugador, password))
@@ -179,6 +181,11 @@ public class Tienda implements Serializable{
 		SalaDeCompetidores competidores = new SalaDeCompetidores();
 		this.robotsEnCompetencia.addAll(competidores.getRobotsCompetidores());
 		return this.robotsEnCompetencia;
+	}
+	
+	public Integer calcularOferta(Robot unRobot){
+		Integer oferta = new Random().nextInt(18) + 2;
+		return oferta * unRobot.getPrecio() / 100;
 	}
 	
 	public void realizarOferta(Robot unRobot) {

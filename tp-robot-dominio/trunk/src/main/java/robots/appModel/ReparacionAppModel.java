@@ -74,8 +74,8 @@ public class ReparacionAppModel implements Serializable{
 		this.costo = costo;
 	}
 
-	public void calcularCosto() {
-		// TODO Auto-generated method stub
-		
+	public void validarCalculoCosto() {
+		if(this.deterioroAReparar < 0)
+			throw new UserException("El valor del costo debe ser mayor a 0");
 	}
 }

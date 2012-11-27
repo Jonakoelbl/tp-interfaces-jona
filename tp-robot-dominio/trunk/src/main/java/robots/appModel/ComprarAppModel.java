@@ -2,7 +2,6 @@ package robots.appModel;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Random;
 
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
