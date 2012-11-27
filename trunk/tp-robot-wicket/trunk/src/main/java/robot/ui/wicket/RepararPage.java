@@ -7,6 +7,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 
+import robot_ui_wicket.robot_ui_wicketweb.FormManageException;
 import robots.appModel.ReparacionAppModel;
 
 import DominioRobot.Jugador;
@@ -22,7 +23,7 @@ public class RepararPage extends WebPage{
 	public RepararPage(Robot robot, Jugador jugador, IndexPage mainPage) {
 		this.mainPage = mainPage;
 		this.tiendaDeReparacion = new ReparacionAppModel(jugador, robot);
-		Form<ReparacionAppModel> robotForm = new Form<ReparacionAppModel> ("robotARepararForm",new CompoundPropertyModel<ReparacionAppModel>(this.tiendaDeReparacion));
+		Form<ReparacionAppModel> robotForm = new FormManageException<ReparacionAppModel> ("robotARepararForm",new CompoundPropertyModel<ReparacionAppModel>(this.tiendaDeReparacion));
 		this.createFieldOfTextNivelDeDeterioro(robotForm);
 		this.createTextBox(robotForm);
 		this.createFieldOfTextCosto(robotForm);
@@ -35,8 +36,7 @@ public class RepararPage extends WebPage{
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
-				//TODO: refinir el costo...
-				RepararPage.this.tiendaDeReparacion.calcularCosto();
+				RepararPage.this.tiendaDeReparacion.validarCalculoCosto();
 			}
 		});
 		robotForm.add(new Button("Reparar"){
