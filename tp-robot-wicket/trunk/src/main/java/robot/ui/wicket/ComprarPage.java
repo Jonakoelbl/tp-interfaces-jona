@@ -8,12 +8,12 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 
+import robot_ui_wicket.robot_ui_wicketweb.FormManageException;
 import robots.appModel.ComprarAppModel;
 import robots.appModel.IndexJugador;
 import DominioRobot.Robot;
@@ -30,7 +30,7 @@ public class ComprarPage extends WebPage {
 
 		this.mainPage = main;
 		this.comprarModel = new ComprarAppModel(index.getJugador(), index.getTienda());
-		Form<ComprarAppModel> compraForm = new Form<ComprarAppModel>("compraForm",new CompoundPropertyModel<ComprarAppModel	>(this.comprarModel));
+		Form<ComprarAppModel> compraForm = new FormManageException<ComprarAppModel>("compraForm",new CompoundPropertyModel<ComprarAppModel	>(this.comprarModel));
 		compraForm.add(new TextField<String>("oferta"));		
 		this.createButtonBack(compraForm);
 		add(compraForm);

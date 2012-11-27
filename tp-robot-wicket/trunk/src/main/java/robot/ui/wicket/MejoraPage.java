@@ -13,6 +13,7 @@ import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 
+import robot_ui_wicket.robot_ui_wicketweb.FormManageException;
 import robots.appModel.IndexJugador;
 import robots.appModel.MejoraAppModel;
 
@@ -28,7 +29,7 @@ public class MejoraPage extends WebPage{
 	public MejoraPage(IndexJugador dataBase,Robot robotAMejorar,IndexPage mainPage) {
 		this.mainPage = mainPage;
 		this.tiendaDeMejora = new MejoraAppModel(dataBase.getJugador(),robotAMejorar, dataBase.getTienda());
-		Form<MejoraAppModel> mejoraForm = new Form<MejoraAppModel>("mejoraForm",new CompoundPropertyModel<MejoraAppModel>(this.tiendaDeMejora));
+		Form<MejoraAppModel> mejoraForm = new FormManageException<MejoraAppModel>("mejoraForm",new CompoundPropertyModel<MejoraAppModel>(this.tiendaDeMejora));
 		this.createTableUpgradeRobot(mejoraForm);
 		this.createTableMejora(mejoraForm);
 		this.createFieldOfText(mejoraForm);
