@@ -30,6 +30,9 @@ public class VentaAppModel implements Serializable{
 		this.tienda = tienda;
 	}
 	
+	/**
+	 * Constructor para wicket
+	 */
 	public VentaAppModel(Jugador jugador2, Robot robotAVender2, Tienda tienda2) {
 		this.jugador = jugador2;
 		this.robotAVender = robotAVender2;
@@ -44,7 +47,7 @@ public class VentaAppModel implements Serializable{
 	}
 
 	public void generarOferta(){
-		this.tienda.realizarOferta(robotAVender);
+		//Integer oferta = this.tienda.calcularOferta(robotAVender);
 	}
 	
 	public Integer getPrecio(){
@@ -72,7 +75,8 @@ public class VentaAppModel implements Serializable{
 		this.robotAVender = robotAVender;
 	}
 	public Integer getOfertaDelSistema() {
-		return this.tienda.getOferta();
+		Integer ofertaCalculada = this.tienda.calcularOferta(robotAVender) ; 
+		return ofertaCalculada;
 	}
 	public void setOfertaDelSistema(Integer ofertaDelSistema) {
 		this.ofertaDelSistema = ofertaDelSistema;

@@ -26,14 +26,19 @@ public class Robot implements Serializable{
 	private Integer poder ;
 	private Integer precio;
 	private Integer oferta;
-	private final int id;
+	private int id;
 	
-	public Robot(int id, String nombre) {
-		this.id = id;
+	public Robot(String nombre){
+		super();
 		this.nombreRobot = nombre;
 		this.poder = new Random().nextInt(20);
 		this.poderEfectivo = poder * (100 - this.nivelDeDeterioro) / 100;
 		this.precio = this.poderEfectivo * 50;
+	}
+	
+	public Robot(int id, String nombre) {
+		this(nombre);
+		this.id = id;
 	}
 	
 	public void actualizarPoder(Mejora mejora) {
