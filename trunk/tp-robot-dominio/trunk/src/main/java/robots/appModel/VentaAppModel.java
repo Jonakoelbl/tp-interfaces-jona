@@ -3,6 +3,7 @@ package robots.appModel;
 import java.io.Serializable;
 import java.util.List;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import DominioRobot.Jugador;
@@ -41,15 +42,15 @@ public class VentaAppModel implements Serializable{
 
 	public void vender(){
 		this.tienda.comprarRobot(this.jugador, this.robotAVender, this.ofertaDelSistema);
+	}
+	
+	public void venderArena(){
+		this.tienda.comprarRobot(this.jugador, this.robotAVender, this.ofertaDelSistema);
 		List<Robot> robots = this.model.getRobots();
 		this.model.setRobots(null);
 		this.model.setRobots(robots);
 	}
 
-	public void generarOferta(){
-		//Integer oferta = this.tienda.calcularOferta(robotAVender);
-	}
-	
 	public Integer getPrecio(){
 		return this.robotAVender.getPrecio();
 	}
@@ -75,7 +76,8 @@ public class VentaAppModel implements Serializable{
 		this.robotAVender = robotAVender;
 	}
 	public Integer getOfertaDelSistema() {
-		Integer ofertaCalculada = this.tienda.calcularOferta(robotAVender) ; 
+		Integer ofertaCalculada = this.tienda.calcularOferta(robotAVender) ;
+		this.setOfertaDelSistema(ofertaCalculada);
 		return ofertaCalculada;
 	}
 	public void setOfertaDelSistema(Integer ofertaDelSistema) {
