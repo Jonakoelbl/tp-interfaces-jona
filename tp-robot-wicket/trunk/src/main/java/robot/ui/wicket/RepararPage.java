@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
 import robot_ui_wicket.robot_ui_wicketweb.FormManageException;
@@ -57,6 +58,7 @@ public class RepararPage extends WebPage{
 		};
 		cancelar.setDefaultFormProcessing(false);
 		robotForm.add(cancelar);
+		robotForm.add(new FeedbackPanel("feedbackPanel"));
 	}
 
 	protected void backMainPage() {

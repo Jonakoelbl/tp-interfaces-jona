@@ -21,7 +21,6 @@ public class VenderPage extends WebPage{
 	public VenderPage(IndexJugador indexJugador,Robot robotAVender, IndexPage indexPage) {
 		this.mainPage = indexPage;
 		this.tiendaDeVenta = new VentaAppModel(indexJugador.getJugador(), robotAVender, indexJugador.getTienda());
-		//this.tiendaDeVenta.generarOferta();
 		Form<VentaAppModel> tiendaForm = new Form<VentaAppModel>("tiendaForm",new CompoundPropertyModel<VentaAppModel>(this.tiendaDeVenta));
 		this.createPanelOfText(tiendaForm);
 		this.createOnSummit(tiendaForm);
@@ -34,6 +33,7 @@ public class VenderPage extends WebPage{
 			@Override
 			public void onSubmit() {
 				VenderPage.this.tiendaDeVenta.vender();
+				VenderPage.this.backMainPage();
 			}
 		});
 		tiendaForm.add(new Button("Cancelar"){
