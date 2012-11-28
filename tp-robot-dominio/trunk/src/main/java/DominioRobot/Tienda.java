@@ -102,11 +102,9 @@ public class Tienda implements Serializable{
 	}
 	
 	public void comprarRobot(Jugador jugador, Robot robot,Integer oferta){
-		if(aceptarOfertaDeJugador(oferta, robot)){
-			jugador.vender(robot, oferta);
-			robot.fuisteVendido();
-			this.robotsEnVenta.add(robot);
-		}
+		jugador.vender(robot, oferta);
+		robot.fuisteVendido();
+		this.robotsEnVenta.add(robot);
 	}	
 	/**
 	 * @return the user that init session
