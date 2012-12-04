@@ -1,6 +1,5 @@
 package robot_ui_wicket.robot_ui_wicketweb;
 
-import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.IFormSubmitter;
 import org.apache.wicket.model.IModel;
@@ -17,9 +16,9 @@ public class FormManageException<T> extends Form<T> {
 	public void process(IFormSubmitter submittingComponent) {
 		try {
 			super.process(submittingComponent);
-		} catch (WicketRuntimeException e) {
-			if (e.getCause() instanceof UserException) {
-				this.error(e.getCause().getMessage());
+		} catch (RuntimeException e) {
+			if (e instanceof UserException) {
+				this.error(e.getMessage());
 			} else {
 				throw e;
 			}

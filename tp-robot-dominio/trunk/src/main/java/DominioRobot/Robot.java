@@ -70,6 +70,10 @@ public class Robot implements Serializable{
 		this.nombreRobot = nombreRobot;
 	}
 
+	public List<Mejora> getActualizacion(){
+		return this.actualizaciones;
+	}
+	
 	public String getNombreRobot() {
 		return nombreRobot;
 	}
@@ -124,5 +128,13 @@ public class Robot implements Serializable{
 
 	public int getId() {
 		return this.id;
+	}
+
+	public void desgaste() {
+		int degaste = 3 + this.nivelDeDeterioro;
+		if(degaste > 100)
+			this.nivelDeDeterioro = 100;
+		else
+			this.nivelDeDeterioro =+ degaste; 
 	}
 }

@@ -2,6 +2,7 @@ package robots.appModel;
 
 import java.io.Serializable;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import DominioRobot.Jugador;
@@ -41,7 +42,21 @@ public class CompetirAppModel implements Serializable{
 	 * 
 	 */
 	public void competirPorHonor(){
+		this.validar();
 		this.tienda.competir(this.apuestaRealizada, this.robotSeleccionado, this.contrincanteSeleccionado);
+	}
+	
+	public void rechazarReto(){
+		this.robotSeleccionado.desgaste();
+	}
+	
+	public void validar(){
+		if(this.contrincanteSeleccionado == null)
+			throw new UserException("No se ha seleccionado un contrincante");
+		if(this.apuestaRealizada == null)
+			throw new UserException("No se ha ingresado una apuesta");
+		if(this.apuestaRealizada > this.jugador.getDinero())
+			throw new UserException("Su apuesta supera al monto del jugador");
 	}
 	
 	public Robot getContrincanteSeleccionado() {

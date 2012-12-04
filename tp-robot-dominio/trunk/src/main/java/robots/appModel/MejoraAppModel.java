@@ -32,10 +32,12 @@ public class MejoraAppModel implements Serializable{
 	}
 	
 	public void validar(){
-		if(this.jugador.getDinero() < this.mejoraSeleccionado.getPrecio())
-			throw new UserException("El Jugador no tiene suficiente dinero para realizar la accion");
 		if(this.mejoraSeleccionado == null)
 			throw new UserException("No se ha seleccionado ninguna mejora");
+		if(this.jugador.getDinero() < this.mejoraSeleccionado.getPrecio())
+			throw new UserException("El Jugador no tiene suficiente dinero para realizar la accion");
+		if(this.robotAMejorar.getActualizacion().containsAll(getMejorasEnVenta()))
+			throw new UserException("El robot tiene todas las actualizaciones");
 	}
 	
 	/**

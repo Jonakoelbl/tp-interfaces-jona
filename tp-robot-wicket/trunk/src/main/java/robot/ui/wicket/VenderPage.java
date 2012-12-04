@@ -40,6 +40,7 @@ public class VenderPage extends WebPage{
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
+				VenderPage.this.tiendaDeVenta.rechazarCompra();
 				VenderPage.this.backMainPage();
 			}
 		});

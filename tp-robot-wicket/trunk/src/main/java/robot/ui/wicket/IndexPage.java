@@ -7,6 +7,7 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
 import DominioRobot.Jugador;
@@ -32,6 +33,7 @@ public class IndexPage extends WebPage{
 	protected void createLabelUsernameAndMoney(Form<IndexJugador> form){
 		form.add(new Label("jugador.nombre"));
 		form.add(new Label("jugador.dinero"));
+		form.add(new Label("mensaje"));
 	}
 	
 	private void createTableRobotPlayer(Form<IndexJugador> parent) {

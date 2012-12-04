@@ -98,7 +98,7 @@ public class Tienda implements Serializable{
 	}
 
 	public void venderMejora(Jugador jugador, Robot robot,Mejora mejora){
-		jugador.mejorar(robot, mejora);
+		jugador.comprarMejoraParaRobot(robot, mejora);
 	}
 	
 	public void comprarRobot(Jugador jugador, Robot robot,Integer oferta){
@@ -130,6 +130,10 @@ public class Tienda implements Serializable{
 		unRetador.getPropietario().setDinero(unRetador.getPropietario().getDinero() + this.getGanaciaDeLaPelea(unaApuesta, unRetador, unOponente));
 	}
 
+	public void rechazarReto(Robot unRetador){
+		unRetador.desgaste();
+	}
+	
 	public void competir(Integer unaApuesta, Robot unRetador, Robot unOponente){
 		if(this.puedeApostar(unaApuesta, unRetador.getPropietario())){
 			if(this.ganaCompetencia(unRetador, unOponente)){
@@ -213,7 +217,7 @@ public class Tienda implements Serializable{
 	 * @param unaOferta
 	 */
 	public void cobraElFeedPorOfertar(Jugador unJugador, Integer unaOferta){
-		unJugador.setDinero(unJugador.getDinero()- (unaOferta*2/100));
+		unJugador.setDinero(unJugador.getDinero()- 5);//(unaOferta*2/100));
 	}
 	/**
 	 * @The system allowed to sell the robots
