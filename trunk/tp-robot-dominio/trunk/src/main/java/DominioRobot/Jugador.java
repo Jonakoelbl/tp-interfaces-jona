@@ -13,7 +13,7 @@ public class Jugador implements Serializable{
 	private String nombre; 
 	private String password;
 	private List<Robot> misRobots = new Vector<Robot>();
-	private Integer dinero = 3000;
+	private Integer dinero = 4000;
 	private List<Robot> misContrincantes = new Vector<Robot>();
 	/**
 	public Jugador(String unNombre) {
@@ -58,12 +58,12 @@ public class Jugador implements Serializable{
 		}
 	}
 	
-	public void reparar(Robot robot, int repararDeterioro, int costo){
+	public void repararDeterioroDelRobot(Robot robot, int repararDeterioro, int costo){
 		this.dinero -= costo;
 		robot.fuisteReparado(repararDeterioro);
 	}
 
-	public void mejorar(Robot robot, Mejora mejora){
+	public void comprarMejoraParaRobot(Robot robot, Mejora mejora){
 		this.dinero -= mejora.getPrecio();
 		robot.actualizarPoder(mejora);
 	}

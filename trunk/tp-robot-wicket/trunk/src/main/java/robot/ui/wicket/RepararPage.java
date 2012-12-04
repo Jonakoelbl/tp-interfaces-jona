@@ -41,14 +41,13 @@ public class RepararPage extends WebPage{
 				RepararPage.this.tiendaDeReparacion.validarCalculoCosto();
 			}
 		});
-		robotForm.add(new AjaxButton("Reparar"){
+		robotForm.add(new Button("Reparar"){
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				RepararPage.this.tiendaDeReparacion.reparar();
 				RepararPage.this.backMainPage();
 			}
-			
 		});
 		Button cancelar = new Button("Cancelar"){
 			private static final long serialVersionUID = 1L;

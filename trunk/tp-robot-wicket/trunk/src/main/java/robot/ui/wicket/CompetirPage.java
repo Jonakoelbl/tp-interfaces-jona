@@ -11,11 +11,13 @@ import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 
 import DominioRobot.Robot;
 
+import robot_ui_wicket.robot_ui_wicketweb.FormManageException;
 import robots.appModel.CompetirAppModel;
 import robots.appModel.IndexJugador;
 
@@ -32,7 +34,7 @@ public class CompetirPage extends WebPage {
 		this.robotsPreparedToFight = indexJugador.getRobotsDeLosContrincantes();
 		this.battleground = new CompetirAppModel(indexJugador.getJugador(), robotPlayer, indexJugador.getTienda());
 		Form<CompetirAppModel> competirForm = 
-			new Form<CompetirAppModel>("competirForm", new CompoundPropertyModel<CompetirAppModel>(this.battleground));
+			new FormManageException<CompetirAppModel>("competirForm", new CompoundPropertyModel<CompetirAppModel>(this.battleground));
 		this.createTextOfFieldApuesta(competirForm);
 		this.createTableRobotsPreparedToFight(competirForm);
 		this.createButton(competirForm);
@@ -41,6 +43,7 @@ public class CompetirPage extends WebPage {
 	
 	protected void createTextOfFieldApuesta(Form<CompetirAppModel> form) {
 		form.add(new TextField<String>("apuestaRealizada"));
+		form.add(new FeedbackPanel("feedbackPanel"));
 	}
 	
 	protected void backToPage(){
@@ -60,6 +63,7 @@ public class CompetirPage extends WebPage {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
+				CompetirPage.this.battleground.rechazarReto();
 				CompetirPage.this.backToPage();
 			}
 		});

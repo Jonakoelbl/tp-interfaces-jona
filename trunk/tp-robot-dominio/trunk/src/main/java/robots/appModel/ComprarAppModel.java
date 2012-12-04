@@ -29,6 +29,8 @@ public class ComprarAppModel implements Serializable{
 	}
 
 	public List<Robot> getRobotsEnVenta(){
+		if(this.tienda.getRobotsEnVenta() == null)
+			throw new UserException("La tienda no tiene mas robot");
 		return this.tienda.getRobotsEnVenta();
 	}
 	
@@ -64,6 +66,7 @@ public class ComprarAppModel implements Serializable{
 	}
 
 	public void setRobotAComprar(Robot robotAComprar) {
+
 		this.robotAComprar = robotAComprar;
 	}
 }

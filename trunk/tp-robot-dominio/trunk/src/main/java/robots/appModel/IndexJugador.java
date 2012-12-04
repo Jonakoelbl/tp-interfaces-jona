@@ -11,6 +11,7 @@ import DominioRobot.Tienda;
 public class IndexJugador implements Serializable{
 	private Jugador jugador;
 	private Tienda tienda;
+	private String mensaje;
 
 	public IndexJugador() {
 		this.tienda = new Tienda();
@@ -39,5 +40,13 @@ public class IndexJugador implements Serializable{
 
 	public Tienda getTienda() {
 		return tienda;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	public String getMensaje() {
+		return mensaje;
 	}
 }

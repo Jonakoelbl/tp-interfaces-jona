@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.list.PropertyListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 
@@ -91,5 +92,6 @@ public class MejoraPage extends WebPage{
 	
 	protected void createFieldOfText(Form<MejoraAppModel> mejoraForm) {
 		mejoraForm.add(new Label("robotAMejorar.poder"));
+		mejoraForm.add(new FeedbackPanel("feedbackPanel"));
 	}
 }

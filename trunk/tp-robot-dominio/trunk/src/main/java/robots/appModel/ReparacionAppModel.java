@@ -24,8 +24,9 @@ public class ReparacionAppModel implements Serializable{
 	}
 	
 	public void reparar(){
+		this.calcularCostoDeReparacion();
 		this.validar();
-		this.jugador.reparar(this.robotAReparar, this.deterioroAReparar, this.costo);
+		this.jugador.repararDeterioroDelRobot(this.robotAReparar, this.deterioroAReparar, this.costo);
 	}
 	
 	public void validar(){
@@ -58,8 +59,12 @@ public class ReparacionAppModel implements Serializable{
 	}
 
 	public int getDeterioroAReparar() {
-		this.setCosto(this.deterioroAReparar * 25);
+		calcularCostoDeReparacion();
 		return deterioroAReparar;
+	}
+
+	protected void calcularCostoDeReparacion() {
+		this.setCosto(this.deterioroAReparar * 25);
 	}
 
 	public void setDeterioroAReparar(int deterioroAReparar) {

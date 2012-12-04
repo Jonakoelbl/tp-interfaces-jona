@@ -83,4 +83,8 @@ public class VentaAppModel implements Serializable{
 	public void setOfertaDelSistema(Integer ofertaDelSistema) {
 		this.ofertaDelSistema = ofertaDelSistema;
 	}
+
+	public void rechazarCompra() {
+		this.robotAVender.desgaste();
+	}
 }
