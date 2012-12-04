@@ -1,5 +1,6 @@
 package robot.ui.wicket;
 
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -10,7 +11,6 @@ import org.apache.wicket.model.CompoundPropertyModel;
 
 import robot_ui_wicket.robot_ui_wicketweb.FormManageException;
 import robots.appModel.ReparacionAppModel;
-
 import DominioRobot.Jugador;
 import DominioRobot.Robot;
 
@@ -32,7 +32,8 @@ public class RepararPage extends WebPage{
 		this.add(robotForm);
 	}
 	
-	private void createButtonAction(Form<ReparacionAppModel> robotForm) {
+	private void createButtonAction(final Form<ReparacionAppModel> robotForm) {
+
 		robotForm.add(new Button("calcular"){
 			private static final long serialVersionUID = 1L;
 			@Override
@@ -40,14 +41,14 @@ public class RepararPage extends WebPage{
 				RepararPage.this.tiendaDeReparacion.validarCalculoCosto();
 			}
 		});
-		robotForm.add(new Button("Reparar"){
+		robotForm.add(new AjaxButton("Reparar"){
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
-				RepararPage.this.tiendaDeReparacion.validar();
 				RepararPage.this.tiendaDeReparacion.reparar();
 				RepararPage.this.backMainPage();
 			}
+			
 		});
 		Button cancelar = new Button("Cancelar"){
 			private static final long serialVersionUID = 1L;
@@ -58,15 +59,15 @@ public class RepararPage extends WebPage{
 		};
 		cancelar.setDefaultFormProcessing(false);
 		robotForm.add(cancelar);
-		robotForm.add(new FeedbackPanel("feedbackPanel"));
 	}
-
+	
 	protected void backMainPage() {
 		this.setResponsePage(mainPage);
 	}
 
 	private void createTextBox(Form<ReparacionAppModel> robotForm) {
 		robotForm.add(new TextField<String>("deterioroAReparar"));
+		robotForm.add(new FeedbackPanel("feedbackPanel"));
 	}
 	
 	protected void createFieldOfTextCosto(Form<ReparacionAppModel> robotForm){

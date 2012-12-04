@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 
@@ -30,11 +31,11 @@ public class ComprarPage extends WebPage {
 
 		this.mainPage = main;
 		this.comprarModel = new ComprarAppModel(index.getJugador(), index.getTienda());
-		Form<ComprarAppModel> compraForm = new FormManageException<ComprarAppModel>("compraForm",new CompoundPropertyModel<ComprarAppModel	>(this.comprarModel));
+		final Form<ComprarAppModel> compraForm = new FormManageException<ComprarAppModel>("compraForm",new CompoundPropertyModel<ComprarAppModel	>(this.comprarModel));
 		compraForm.add(new TextField<String>("oferta"));		
 		this.createButtonBack(compraForm);
 		add(compraForm);
-		
+		compraForm.add(new FeedbackPanel("feedbackPanel"));
 		compraForm.add(new ListView<Robot>("robots", new PropertyModel<List<Robot>>(comprarModel, "tienda.robotsEnVenta")) {
 
 			private static final long serialVersionUID = 1L;
